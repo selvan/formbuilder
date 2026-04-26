@@ -1,0 +1,2 @@
+import type { BaseFieldData, FieldSize } from '$lib/types';
+export interface TextareaFieldData extends BaseFieldData { type: 'textarea'; default_text: string; field_size: FieldSize; range_min: number | null; range_max: number | null; range_type: 'characters' | 'words'; }

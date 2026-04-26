@@ -1,6 +1,5 @@
 <script lang="ts">
 	import {
-		getFieldTypeDefinitions,
 		getSelectedField,
 		getSelectedFieldId,
 		selectField,
@@ -12,7 +11,6 @@
 	import FieldSettings from './FieldSettings.svelte';
 	import type { FieldData } from '$lib/types';
 
-	const fieldTypes = getFieldTypeDefinitions();
 	let selectedField = $derived(getSelectedField());
 	let selectedFieldId = $derived(getSelectedFieldId());
 
@@ -38,7 +36,7 @@
 					<h2 class="panel-title">Field Types</h2>
 				</div>
 				<div class="panel-body">
-					<FieldTypePalette {fieldTypes} onclick={(type) => addField(type)} />
+					<FieldTypePalette onclick={(type) => addField(type)} />
 				</div>
 			</div>
 		</aside>

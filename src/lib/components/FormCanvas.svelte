@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { FieldData, FieldType } from '$lib/types';
+	import type { FieldData } from '$lib/types';
 	import {
 		getFormFields,
 		getSelectedFieldId,
@@ -10,7 +10,7 @@
 		moveField,
 		duplicateField
 	} from '$lib/stores/formBuilder.svelte';
-	import { fieldTypeIcons } from '$lib/stores/formBuilder.svelte';
+	import { fieldRegistry } from '$lib/stores/registry.svelte';
 	import FieldPreview from './FieldPreview.svelte';
 
 	let fields = $derived(getFormFields());
@@ -54,7 +54,7 @@
 		isDraggingFromPalette = false;
 		if (!e.dataTransfer) return;
 
-		const fieldType = e.dataTransfer.getData('application/x-field-type') as FieldType;
+		const fieldType = e.dataTransfer.getData('application/x-field-type') as string;
 		if (fieldType) {
 			// Drop from palette — add at end or at target index
 			if (dropTargetIndex !== null) {
@@ -96,7 +96,7 @@
 		if (!e.dataTransfer) return;
 
 		const reorderData = e.dataTransfer.getData('application/x-field-reorder');
-		const fieldType = e.dataTransfer.getData('application/x-field-type') as FieldType;
+		const fieldType = e.dataTransfer.getData('application/x-field-type') as string;
 
 		if (reorderData !== '') {
 			const fromIndex = parseInt(reorderData, 10);
@@ -183,7 +183,11 @@
 					</div>
 
 					<div class="field-type-badge">
-						<span class="badge-icon">{fieldTypeIcons[field.type]}</span>
+						<span class="badge-icon">
+							{#if fieldRegistry.get(field.type)}
+								<svelte:component this={fieldRegistry.get(field.type)?.icon} />
+							{/if}
+						</span>
 					</div>
 
 					<div class="field-content">

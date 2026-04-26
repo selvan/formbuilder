@@ -1,36 +1,35 @@
 <script lang="ts">
-	import type { FieldType, FieldTypeDefinition } from '$lib/types';
-	import { fieldTypeIcons } from '$lib/stores/formBuilder.svelte';
+	import { fieldRegistry } from '$lib/stores/registry.svelte';
 
 	let {
-		fieldTypes,
 		ondragstart,
 		onclick
 	}: {
-		fieldTypes: FieldTypeDefinition[];
-		ondragstart?: (type: FieldType) => void;
-		onclick?: (type: FieldType) => void;
+		ondragstart?: (type: string) => void;
+		onclick?: (type: string) => void;
 	} = $props();
 
-	function handleDragStart(e: DragEvent, type: FieldType) {
+	function handleDragStart(e: DragEvent, type: string) {
 		if (!e.dataTransfer) return;
 		e.dataTransfer.setData('application/x-field-type', type);
 		e.dataTransfer.effectAllowed = 'copy';
 		ondragstart?.(type);
 	}
+	
+	let plugins = $derived(fieldRegistry.getAll());
 </script>
 
 <div class="palette-grid">
-	{#each fieldTypes as ft}
+	{#each plugins as plugin}
 		<button
 			class="palette-card"
 			draggable="true"
-			ondragstart={(e) => handleDragStart(e, ft.type)}
-			onclick={() => onclick?.(ft.type)}
-			title="Click or drag to add {ft.widgetName}"
+			ondragstart={(e) => handleDragStart(e, plugin.type)}
+			onclick={() => onclick?.(plugin.type)}
+			title="Click or drag to add {plugin.widgetName}"
 		>
-			<span class="palette-icon">{fieldTypeIcons[ft.type]}</span>
-			<span class="palette-name">{ft.widgetName}</span>
+			<span class="palette-icon"><svelte:component this={plugin.icon} /></span>
+			<span class="palette-name">{plugin.widgetName}</span>
 		</button>
 	{/each}
 </div>
