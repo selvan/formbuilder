@@ -30,6 +30,18 @@ export interface BaseFieldData {
 
 export type FieldData = BaseFieldData;
 
+export interface DocumentInstanceField {
+	id: string | number;
+	value?: FieldData;
+	error?: string;
+}
+
+export interface DocumentInstanceData {
+	address?: string;
+	share_option?: string;
+	fields: Array<FieldData | DocumentInstanceField>;
+}
+
 import type { Component } from 'svelte';
 
 // Plugin architecture definition

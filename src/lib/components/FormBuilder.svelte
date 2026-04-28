@@ -1,4 +1,5 @@
 <script lang="ts">
+	import '$lib/plugins/register';
 	import {
 		getSelectedField,
 		getSelectedFieldId,
