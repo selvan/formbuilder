@@ -39,5 +39,6 @@ export interface FieldPlugin<T extends BaseFieldData = BaseFieldData> {
 	icon: Component;
 	preview: Component<{ data: T }>;
 	settings: Component<{ data: T; onupdate: (data: T) => void }>;
+	instance: Component<{ data: T; userValue?: any; error?: string; onchange: (value: any) => void }>;
 	defaultValue: () => Omit<T, 'id'>;
 }
