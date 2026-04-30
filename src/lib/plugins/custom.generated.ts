@@ -3,6 +3,18 @@ import type { FieldPlugin } from '$lib/core';
 
 
 type PluginModule = Record<string, unknown>;
+type DesignUiKey = 'icon' | 'preview' | 'settings';
+
+function hasOwnValue(value: object, key: DesignUiKey): boolean {
+	return Object.prototype.hasOwnProperty.call(value, key) && (value as Record<DesignUiKey, unknown>)[key] != null;
+}
+
+function hasValidDesignUiGroup(value: object): boolean {
+	const hasIcon = hasOwnValue(value, 'icon');
+	const hasPreview = hasOwnValue(value, 'preview');
+	const hasSettings = hasOwnValue(value, 'settings');
+	return (hasIcon && hasPreview && hasSettings) || (!hasIcon && !hasPreview && !hasSettings);
+}
 
 function isFieldPlugin(value: unknown): value is FieldPlugin<any> {
 	return Boolean(
@@ -10,7 +22,9 @@ function isFieldPlugin(value: unknown): value is FieldPlugin<any> {
 		typeof value === 'object' &&
 		typeof (value as FieldPlugin<any>).type === 'string' &&
 		typeof (value as FieldPlugin<any>).widgetName === 'string' &&
-		typeof (value as FieldPlugin<any>).defaultValue === 'function'
+		typeof (value as FieldPlugin<any>).instance === 'function' &&
+		typeof (value as FieldPlugin<any>).defaultValue === 'function' &&
+		hasValidDesignUiGroup(value)
 	);
 }
 

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { FieldData } from '$lib/core';
-	import { fieldRegistry } from '$lib/core';
+	import { fieldRegistry, hasFieldPluginDesignUi } from '$lib/core';
 	import LabelSetting from './settings/LabelSetting.svelte';
 	import OptionsSetting from './settings/OptionsSetting.svelte';
 
@@ -31,8 +31,10 @@
 	<!-- Field specific settings via Plugin -->
 	{#if fieldRegistry.get(data.type)}
 		{@const plugin = fieldRegistry.get(data.type)}
-		{#if plugin}
+		{#if plugin && hasFieldPluginDesignUi(plugin)}
 			<svelte:component this={plugin.settings} {data} {onupdate} />
+		{:else}
+			<div class="error">No design settings available for type: {data.type}</div>
 		{/if}
 	{:else}
 		<div class="error">Unknown settings for type: {data.type}</div>

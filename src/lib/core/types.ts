@@ -37,12 +37,34 @@ export interface DocumentInstanceData {
 	fields: Array<FieldData | DocumentInstanceField>;
 }
 
-export interface FieldPlugin<T extends BaseFieldData = BaseFieldData> {
-	type: string;
-	widgetName: string;
+export interface FieldPluginDesignUi<T extends BaseFieldData = BaseFieldData> {
 	icon: Component;
 	preview: Component<{ data: T }>;
 	settings: Component<{ data: T; onupdate: (data: T) => void }>;
+}
+
+export interface FieldPluginBase<T extends BaseFieldData = BaseFieldData> {
+	type: string;
+	widgetName: string;
 	instance: Component<{ data: T; userValue?: any; error?: string; onchange: (value: any) => void }>;
 	defaultValue: () => Omit<T, 'id'>;
+}
+
+export type UiFieldPlugin<T extends BaseFieldData = BaseFieldData> = FieldPluginBase<T> &
+	FieldPluginDesignUi<T>;
+
+export type CliFieldPlugin<T extends BaseFieldData = BaseFieldData> = FieldPluginBase<T> & {
+	icon?: never;
+	preview?: never;
+	settings?: never;
+};
+
+export type FieldPlugin<T extends BaseFieldData = BaseFieldData> =
+	| UiFieldPlugin<T>
+	| CliFieldPlugin<T>;
+
+export function hasFieldPluginDesignUi<T extends BaseFieldData>(
+	plugin: FieldPlugin<T>
+): plugin is UiFieldPlugin<T> {
+	return 'icon' in plugin && 'preview' in plugin && 'settings' in plugin;
 }

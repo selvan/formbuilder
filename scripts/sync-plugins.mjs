@@ -116,6 +116,18 @@ import type { FieldPlugin } from '$lib/core';
 ${imports}
 
 type PluginModule = Record<string, unknown>;
+type DesignUiKey = 'icon' | 'preview' | 'settings';
+
+function hasOwnValue(value: object, key: DesignUiKey): boolean {
+\treturn Object.prototype.hasOwnProperty.call(value, key) && (value as Record<DesignUiKey, unknown>)[key] != null;
+}
+
+function hasValidDesignUiGroup(value: object): boolean {
+\tconst hasIcon = hasOwnValue(value, 'icon');
+\tconst hasPreview = hasOwnValue(value, 'preview');
+\tconst hasSettings = hasOwnValue(value, 'settings');
+\treturn (hasIcon && hasPreview && hasSettings) || (!hasIcon && !hasPreview && !hasSettings);
+}
 
 function isFieldPlugin(value: unknown): value is FieldPlugin<any> {
 \treturn Boolean(
@@ -123,7 +135,9 @@ function isFieldPlugin(value: unknown): value is FieldPlugin<any> {
 \t\ttypeof value === 'object' &&
 \t\ttypeof (value as FieldPlugin<any>).type === 'string' &&
 \t\ttypeof (value as FieldPlugin<any>).widgetName === 'string' &&
-\t\ttypeof (value as FieldPlugin<any>).defaultValue === 'function'
+\t\ttypeof (value as FieldPlugin<any>).instance === 'function' &&
+\t\ttypeof (value as FieldPlugin<any>).defaultValue === 'function' &&
+\t\thasValidDesignUiGroup(value)
 \t);
 }
 
