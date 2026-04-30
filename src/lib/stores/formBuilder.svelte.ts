@@ -18,6 +18,18 @@ export function getFormFields(): FieldData[] {
 	return formFields;
 }
 
+/** Replace the current form fields */
+export function setFormFields(fields: FieldData[]): void {
+	formFields = fields.map((field) => ({ ...field }));
+	selectedFieldId = formFields[0]?.id ?? null;
+}
+
+/** Clear all fields from the builder */
+export function clearFormFields(): void {
+	formFields = [];
+	selectedFieldId = null;
+}
+
 /** Get the ID of the currently selected field */
 export function getSelectedFieldId(): string | null {
 	return selectedFieldId;

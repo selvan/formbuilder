@@ -1,23 +1,69 @@
 <script lang="ts">
 	import '$lib/plugins/register';
 	import {
+		getFormFields,
 		getSelectedField,
 		getSelectedFieldId,
 		selectField,
 		updateField,
-		addField
+		addField,
+		setFormFields
 	} from '$lib/stores/formBuilder.svelte';
 	import FieldTypePalette from './FieldTypePalette.svelte';
 	import FormCanvas from './FormCanvas.svelte';
 	import FieldSettings from './FieldSettings.svelte';
 	import type { FieldData } from '$lib/types';
+	import { onMount } from 'svelte';
+
+	let {
+		formUuid = '',
+		initialFields = [],
+		saveAction
+	}: {
+		formUuid?: string;
+		initialFields?: FieldData[];
+		saveAction?: string;
+	} = $props();
 
 	let selectedField = $derived(getSelectedField());
 	let selectedFieldId = $derived(getSelectedFieldId());
+	let fields = $derived(getFormFields());
+	let saveStatus = $state<'idle' | 'saving' | 'saved' | 'error'>('idle');
+	let saveMessage = $state('');
+
+	onMount(() => {
+		setFormFields(initialFields);
+	});
 
 	function handleFieldUpdate(data: FieldData) {
 		if (selectedFieldId) {
 			updateField(selectedFieldId, data);
+		}
+	}
+
+	async function handleSave() {
+		if (!saveAction) return;
+
+		saveStatus = 'saving';
+		saveMessage = '';
+
+		try {
+			const response = await fetch(saveAction, {
+				method: 'POST',
+				headers: { 'content-type': 'application/json' },
+				body: JSON.stringify({ form_uuid: formUuid, fields })
+			});
+
+			const payload = await response.json().catch(() => ({}));
+			if (!response.ok) {
+				throw new Error(payload?.message || 'Unable to save form design');
+			}
+
+			saveStatus = 'saved';
+			saveMessage = 'Saved';
+		} catch (error) {
+			saveStatus = 'error';
+			saveMessage = error instanceof Error ? error.message : 'Unable to save form design';
 		}
 	}
 </script>
@@ -26,6 +72,16 @@
 	<header class="fb-header">
 		<h1 class="fb-title">Form Builder</h1>
 		<p class="fb-subtitle">Drag fields from the palette to build your form</p>
+		{#if saveAction}
+			<div class="fb-actions">
+				<button class="save-btn" type="button" disabled={saveStatus === 'saving'} onclick={handleSave}>
+					{saveStatus === 'saving' ? 'Saving...' : 'Save Design'}
+				</button>
+				{#if saveMessage}
+					<span class="save-message" class:error={saveStatus === 'error'}>{saveMessage}</span>
+				{/if}
+			</div>
+		{/if}
 	</header>
 
 	<div class="fb-layout">
@@ -128,6 +184,43 @@
 		font-size: 0.9rem;
 		color: var(--color-label);
 		margin: 0.4rem 0 0;
+	}
+
+	.fb-actions {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem;
+		margin-top: 0.85rem;
+	}
+
+	.save-btn {
+		border: 1px solid transparent;
+		border-radius: 0.5rem;
+		background: var(--color-accent);
+		color: white;
+		cursor: pointer;
+		font-size: 0.85rem;
+		font-weight: 600;
+		padding: 0.55rem 0.95rem;
+	}
+
+	.save-btn:hover:not(:disabled) {
+		background: #4f46e5;
+	}
+
+	.save-btn:disabled {
+		cursor: wait;
+		opacity: 0.7;
+	}
+
+	.save-message {
+		color: #86efac;
+		font-size: 0.85rem;
+	}
+
+	.save-message.error {
+		color: #f87171;
 	}
 
 	.fb-layout {
