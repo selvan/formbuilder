@@ -1,6 +1,6 @@
 import { json, error } from '@sveltejs/kit';
 import { saveDesign } from '$lib/server/forms';
-import type { FieldData } from '$lib/types';
+import type { FieldData } from '$lib/core';
 import type { RequestHandler } from './$types';
 
 export const POST: RequestHandler = async ({ params, request }) => {

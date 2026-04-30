@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { FieldData } from '$lib/types';
-	import { fieldRegistry } from '$lib/stores/registry.svelte';
+	import type { FieldData } from '$lib/core';
+	import { fieldRegistry } from '$lib/core';
 
 	let { data }: { data: FieldData } = $props();
 </script>

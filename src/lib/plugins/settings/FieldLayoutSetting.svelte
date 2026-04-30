@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { FieldLayout } from '$lib/types';
+	import type { FieldLayout } from '$lib/core';
 
 	let {
 		value = 'one_column' as FieldLayout,

@@ -1,33 +1,6 @@
-import { fieldRegistry } from '$lib/stores/registry.svelte';
+import { fieldRegistry } from '$lib/core';
+import { defaultPlugins } from './index';
+import { customPlugins } from './custom.generated';
 
-import { textPlugin } from './text';
-import { numberPlugin } from './number';
-import { textareaPlugin } from './textarea';
-import { checkboxPlugin } from './checkbox';
-import { radioPlugin } from './radio';
-import { selectPlugin } from './select';
-import { namePlugin } from './name';
-import { datePlugin } from './date';
-import { filePlugin } from './file';
-import { addressPlugin } from './address';
-import { emailPlugin } from './email';
-import { timePlugin } from './time';
-import { websitePlugin } from './website';
-import { phonePlugin } from './phone';
-import { signaturePlugin } from './signature';
-
-fieldRegistry.register(textPlugin);
-fieldRegistry.register(numberPlugin);
-fieldRegistry.register(textareaPlugin);
-fieldRegistry.register(checkboxPlugin);
-fieldRegistry.register(radioPlugin);
-fieldRegistry.register(selectPlugin);
-fieldRegistry.register(namePlugin);
-fieldRegistry.register(datePlugin);
-fieldRegistry.register(filePlugin);
-fieldRegistry.register(addressPlugin);
-fieldRegistry.register(emailPlugin);
-fieldRegistry.register(timePlugin);
-fieldRegistry.register(websitePlugin);
-fieldRegistry.register(phonePlugin);
-fieldRegistry.register(signaturePlugin);
+fieldRegistry.registerAll(defaultPlugins);
+fieldRegistry.registerAll(customPlugins);

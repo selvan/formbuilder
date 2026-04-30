@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { FieldData } from '$lib/types';
+	import type { FieldData } from '$lib/core';
 	import {
 		getFormFields,
 		getSelectedFieldId,
@@ -10,7 +10,7 @@
 		moveField,
 		duplicateField
 	} from '$lib/stores/formBuilder.svelte';
-	import { fieldRegistry } from '$lib/stores/registry.svelte';
+	import { fieldRegistry } from '$lib/core';
 	import FieldPreview from './FieldPreview.svelte';
 
 	let fields = $derived(getFormFields());

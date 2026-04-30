@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { AddressFieldData } from './types';
-	import SelectSetting from '$lib/components/settings/SelectSetting.svelte';
+	import SelectSetting from '$lib/plugins/settings/SelectSetting.svelte';
 	import { countries } from '$lib/data/countries';
 
 	let { data, onupdate }: { data: AddressFieldData; onupdate: (data: AddressFieldData) => void } = $props();

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { TextareaFieldData } from './types';
-	import PredefinedValueSetting from '$lib/components/settings/PredefinedValueSetting.svelte';
-	import FieldSizeSetting from '$lib/components/settings/FieldSizeSetting.svelte';
-	import RangeSetting from '$lib/components/settings/RangeSetting.svelte';
+	import PredefinedValueSetting from '$lib/plugins/settings/PredefinedValueSetting.svelte';
+	import FieldSizeSetting from '$lib/plugins/settings/FieldSizeSetting.svelte';
+	import RangeSetting from '$lib/plugins/settings/RangeSetting.svelte';
 
 	let { data, onupdate }: { data: TextareaFieldData; onupdate: (data: TextareaFieldData) => void } = $props();
 

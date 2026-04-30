@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '$lib/plugins/register';
-	import { fieldRegistry } from '$lib/stores/registry.svelte';
-	import type { DocumentInstanceData, DocumentInstanceField, FieldData } from '$lib/types';
+	import { fieldRegistry } from '$lib/core';
+	import type { DocumentInstanceData, DocumentInstanceField, FieldData } from '$lib/core';
 
 	type ValuesByField = Record<string, any>;
 	type ErrorsByField = Record<string, string>;

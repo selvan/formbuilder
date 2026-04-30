@@ -1,5 +1,5 @@
-import type { FieldData } from '$lib/types';
-import { fieldRegistry } from './registry.svelte';
+import type { FieldData } from '$lib/core';
+import { fieldRegistry } from '$lib/core';
 
 let _idCounter = 0;
 export function generateId(): string {

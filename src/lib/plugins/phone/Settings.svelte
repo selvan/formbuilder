@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PhoneFieldData } from './types';
-	import type { PhoneFormat } from '$lib/types';
-	import SelectSetting from '$lib/components/settings/SelectSetting.svelte';
+	import type { PhoneFormat } from '$lib/core';
+	import SelectSetting from '$lib/plugins/settings/SelectSetting.svelte';
 
 	let { data, onupdate }: { data: PhoneFieldData; onupdate: (data: PhoneFieldData) => void } = $props();
 

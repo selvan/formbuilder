@@ -1,2 +1,2 @@
-import type { BaseFieldData, FieldSize } from '$lib/types';
+import type { BaseFieldData, FieldSize } from '$lib/core';
 export interface TextFieldData extends BaseFieldData { type: 'text'; default_text: string; field_size: FieldSize; range_min: number | null; range_max: number | null; range_type: 'characters' | 'words'; }

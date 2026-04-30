@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { SelectFieldData } from './types';
-	import FieldSizeSetting from '$lib/components/settings/FieldSizeSetting.svelte';
-	import ChoicesSetting from '$lib/components/settings/ChoicesSetting.svelte';
+	import FieldSizeSetting from '$lib/plugins/settings/FieldSizeSetting.svelte';
+	import ChoicesSetting from '$lib/plugins/settings/ChoicesSetting.svelte';
 
 	let { data, onupdate }: { data: SelectFieldData; onupdate: (data: SelectFieldData) => void } = $props();
 

@@ -12,7 +12,7 @@
 	import FieldTypePalette from './FieldTypePalette.svelte';
 	import FormCanvas from './FormCanvas.svelte';
 	import FieldSettings from './FieldSettings.svelte';
-	import type { FieldData } from '$lib/types';
+	import type { FieldData } from '$lib/core';
 	import { onMount } from 'svelte';
 
 	let {

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { fieldRegistry } from '$lib/stores/registry.svelte';
+	import { fieldRegistry } from '$lib/core';
 
 	let {
 		ondragstart,

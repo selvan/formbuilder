@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { NameFieldData } from './types';
-	import type { NameFormat } from '$lib/types';
-	import SelectSetting from '$lib/components/settings/SelectSetting.svelte';
+	import type { NameFormat } from '$lib/core';
+	import SelectSetting from '$lib/plugins/settings/SelectSetting.svelte';
 
 	let { data, onupdate }: { data: NameFieldData; onupdate: (data: NameFieldData) => void } = $props();
 

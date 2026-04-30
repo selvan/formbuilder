@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { WebsiteFieldData } from './types';
-	import PredefinedValueSetting from '$lib/components/settings/PredefinedValueSetting.svelte';
-	import FieldSizeSetting from '$lib/components/settings/FieldSizeSetting.svelte';
+	import PredefinedValueSetting from '$lib/plugins/settings/PredefinedValueSetting.svelte';
+	import FieldSizeSetting from '$lib/plugins/settings/FieldSizeSetting.svelte';
 
 	let { data, onupdate }: { data: WebsiteFieldData; onupdate: (data: WebsiteFieldData) => void } = $props();
 

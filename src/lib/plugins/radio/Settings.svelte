@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { RadioFieldData } from './types';
-	import FieldLayoutSetting from '$lib/components/settings/FieldLayoutSetting.svelte';
-	import ChoicesSetting from '$lib/components/settings/ChoicesSetting.svelte';
+	import FieldLayoutSetting from '$lib/plugins/settings/FieldLayoutSetting.svelte';
+	import ChoicesSetting from '$lib/plugins/settings/ChoicesSetting.svelte';
 
 	let { data, onupdate }: { data: RadioFieldData; onupdate: (data: RadioFieldData) => void } = $props();
 

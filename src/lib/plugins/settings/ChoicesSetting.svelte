@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Choice } from '$lib/types';
+	import type { Choice } from '$lib/core';
 
 	let {
 		choices = [] as Choice[],

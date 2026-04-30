@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { DateFieldData } from './types';
-	import type { DateFormat } from '$lib/types';
-	import SelectSetting from '$lib/components/settings/SelectSetting.svelte';
+	import type { DateFormat } from '$lib/core';
+	import SelectSetting from '$lib/plugins/settings/SelectSetting.svelte';
 
 	let { data, onupdate }: { data: DateFieldData; onupdate: (data: DateFieldData) => void } = $props();
 

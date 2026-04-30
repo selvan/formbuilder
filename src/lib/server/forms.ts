@@ -1,4 +1,4 @@
-import type { FieldData } from '$lib/types';
+import type { FieldData } from '$lib/core';
 
 export interface StoredDesign {
 	form_uuid: string;

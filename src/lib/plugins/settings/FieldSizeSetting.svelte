@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { FieldSize } from '$lib/types';
+	import type { FieldSize } from '$lib/core';
 
 	let {
 		value = 'medium' as FieldSize,
