@@ -29,7 +29,7 @@ The library is organized so it can be extracted into npm packages later without 
 Use these imports inside the app:
 
 ```ts
-import type { FieldData, FieldPlugin } from '$lib/core';
+import type { FieldSpec, FieldPlugin } from '$lib/core';
 import { fieldRegistry } from '$lib/core';
 import { defaultPlugins } from '$lib/plugins';
 import { FormBuilder, DocumentInstance } from '$lib';

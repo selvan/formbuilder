@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { CheckboxFieldData } from './types';
+	import type { CheckboxFieldSpec } from './types';
 
-	let { data }: { data: CheckboxFieldData } = $props();
+	let { data }: { data: CheckboxFieldSpec } = $props();
 </script>
 
 <div class="field-preview">

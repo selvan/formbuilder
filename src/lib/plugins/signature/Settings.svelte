@@ -1,5 +1,9 @@
 <script lang="ts">
-	import type { SignatureFieldData } from './types';
-	let { data, onupdate }: { data: SignatureFieldData; onupdate: (data: SignatureFieldData) => void } = $props();
+	import type { SignatureFieldSpec } from './types';
+	let {
+		data,
+		onupdate
+	}: { data: SignatureFieldSpec; onupdate: (data: SignatureFieldSpec) => void } = $props();
 </script>
+
 <!-- Signature field has no specific settings currently -->

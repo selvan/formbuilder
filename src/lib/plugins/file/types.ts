@@ -1,2 +1,2 @@
-import type { BaseFieldData } from '$lib/core';
-export interface FileFieldData extends BaseFieldData { type: 'file'; }
+import type { BaseFieldSpec } from '$lib/core';
+export interface FileFieldSpec extends BaseFieldSpec { type: 'file'; }

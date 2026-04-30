@@ -1,11 +1,12 @@
 <script lang="ts">
-	import type { RadioFieldData } from './types';
+	import type { RadioFieldSpec } from './types';
 	import FieldLayoutSetting from '$lib/plugins/settings/FieldLayoutSetting.svelte';
 	import ChoicesSetting from '$lib/plugins/settings/ChoicesSetting.svelte';
 
-	let { data, onupdate }: { data: RadioFieldData; onupdate: (data: RadioFieldData) => void } = $props();
+	let { data, onupdate }: { data: RadioFieldSpec; onupdate: (data: RadioFieldSpec) => void } =
+		$props();
 
-	function patch<K extends keyof RadioFieldData>(key: K, value: RadioFieldData[K]) {
+	function patch<K extends keyof RadioFieldSpec>(key: K, value: RadioFieldSpec[K]) {
 		onupdate({ ...data, [key]: value });
 	}
 </script>

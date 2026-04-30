@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { TimeFieldData } from './types';
+	import type { TimeFieldSpec } from './types';
 
 	let {
 		data,
@@ -7,7 +7,7 @@
 		error = '',
 		onchange
 	}: {
-		data: TimeFieldData;
+		data: TimeFieldSpec;
 		userValue?: Record<string, string>;
 		error?: string;
 		onchange: (value: any) => void;

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { TimeFieldData } from './types';
+	import type { TimeFieldSpec } from './types';
 
-	let { data }: { data: TimeFieldData } = $props();
+	let { data }: { data: TimeFieldSpec } = $props();
 </script>
 
 <div class="field-preview">

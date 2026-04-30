@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { RadioFieldData } from './types';
+	import type { RadioFieldSpec } from './types';
 
-	let { data }: { data: RadioFieldData } = $props();
+	let { data }: { data: RadioFieldSpec } = $props();
 </script>
 
 <div class="field-preview">

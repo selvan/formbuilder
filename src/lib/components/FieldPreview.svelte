@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { FieldData } from '$lib/core';
+	import type { FieldSpec } from '$lib/core';
 	import { fieldRegistry, hasFieldPluginDesignUi } from '$lib/core';
 
-	let { data }: { data: FieldData } = $props();
+	let { data }: { data: FieldSpec } = $props();
 </script>
 
 <div class="preview-container">

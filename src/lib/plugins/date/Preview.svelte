@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { DateFieldData } from './types';
+	import type { DateFieldSpec } from './types';
 
-	let { data }: { data: DateFieldData } = $props();
+	let { data }: { data: DateFieldSpec } = $props();
 
 	$effect(() => {
 		// Parse date format parts

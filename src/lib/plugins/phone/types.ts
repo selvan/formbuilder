@@ -1,2 +1,2 @@
-import type { BaseFieldData, PhoneFormat } from '$lib/core';
-export interface PhoneFieldData extends BaseFieldData { type: 'phone'; phone_format: PhoneFormat; }
+import type { BaseFieldSpec, PhoneFormat } from '$lib/core';
+export interface PhoneFieldSpec extends BaseFieldSpec { type: 'phone'; phone_format: PhoneFormat; }

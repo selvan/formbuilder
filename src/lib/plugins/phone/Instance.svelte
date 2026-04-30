@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PhoneFieldData } from './types';
+	import type { PhoneFieldSpec } from './types';
 
 	let {
 		data,
@@ -7,16 +7,14 @@
 		error = '',
 		onchange
 	}: {
-		data: PhoneFieldData;
+		data: PhoneFieldSpec;
 		userValue?: Record<string, string> | string;
 		error?: string;
 		onchange: (value: any) => void;
 	} = $props();
 
 	// International format uses a single string; domestic uses three parts
-	let international = $state(
-		typeof userValue === 'object' ? userValue?.international || '' : ''
-	);
+	let international = $state(typeof userValue === 'object' ? userValue?.international || '' : '');
 	let parts = $state({
 		first: typeof userValue === 'object' ? userValue?.first || '' : '',
 		second: typeof userValue === 'object' ? userValue?.second || '' : '',

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { AddressFieldData } from './types';
+	import type { AddressFieldSpec } from './types';
 	import { countries } from '$lib/data/countries';
 
 	let {
@@ -8,7 +8,7 @@
 		error = '',
 		onchange
 	}: {
-		data: AddressFieldData;
+		data: AddressFieldSpec;
 		userValue?: Record<string, string>;
 		error?: string;
 		onchange: (value: any) => void;

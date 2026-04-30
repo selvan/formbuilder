@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { AddressFieldData } from './types';
+	import type { AddressFieldSpec } from './types';
 
-	let { data }: { data: AddressFieldData } = $props();
+	let { data }: { data: AddressFieldSpec } = $props();
 </script>
 
 <div class="field-preview">

@@ -1,11 +1,12 @@
 <script lang="ts">
-	import type { EmailFieldData } from './types';
+	import type { EmailFieldSpec } from './types';
 	import PredefinedValueSetting from '$lib/plugins/settings/PredefinedValueSetting.svelte';
 	import FieldSizeSetting from '$lib/plugins/settings/FieldSizeSetting.svelte';
 
-	let { data, onupdate }: { data: EmailFieldData; onupdate: (data: EmailFieldData) => void } = $props();
+	let { data, onupdate }: { data: EmailFieldSpec; onupdate: (data: EmailFieldSpec) => void } =
+		$props();
 
-	function patch<K extends keyof EmailFieldData>(key: K, value: EmailFieldData[K]) {
+	function patch<K extends keyof EmailFieldSpec>(key: K, value: EmailFieldSpec[K]) {
 		onupdate({ ...data, [key]: value });
 	}
 </script>

@@ -3,16 +3,16 @@ import Icon from './Icon.svelte';
 import Instance from './Instance.svelte';
 import Preview from './Preview.svelte';
 import Settings from './Settings.svelte';
-import type { NameFieldData } from './types';
+import type { NameFieldSpec } from './types';
 
-export const namePlugin: FieldPlugin<NameFieldData> = {
+export const namePlugin: FieldPlugin<NameFieldSpec> = {
 	type: 'name',
 	widgetName: 'Name',
 	icon: Icon as any,
 	preview: Preview as any,
 	settings: Settings as any,
 	instance: Instance as any,
-	defaultValue: () => {
+	defaultSpecData: () => {
 		// To be filled from old formBuilder
 		return { type: 'name', label_text: 'Name', required: false } as any;
 	}

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { CheckboxFieldData } from './types';
+	import type { CheckboxFieldSpec } from './types';
 
 	let {
 		data,
@@ -7,7 +7,7 @@
 		error = '',
 		onchange
 	}: {
-		data: CheckboxFieldData;
+		data: CheckboxFieldSpec;
 		userValue?: Record<string, string> | string[] | number[];
 		error?: string;
 		onchange: (value: any) => void;
@@ -27,7 +27,10 @@
 
 	let selected = $state<Record<string, string>>(
 		Object.fromEntries(
-			data.checkboxes.map((_, index) => [String(index), checkedFromUserValue(index) ? String(index) : '-1'])
+			data.checkboxes.map((_, index) => [
+				String(index),
+				checkedFromUserValue(index) ? String(index) : '-1'
+			])
 		)
 	);
 

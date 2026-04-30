@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { SelectFieldData } from './types';
+	import type { SelectFieldSpec } from './types';
 
-	let { data }: { data: SelectFieldData } = $props();
+	let { data }: { data: SelectFieldSpec } = $props();
 </script>
 
 <div class="field-preview">

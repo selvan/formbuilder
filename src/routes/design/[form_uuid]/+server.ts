@@ -1,6 +1,6 @@
 import { json, error } from '@sveltejs/kit';
 import { saveDesign } from '$lib/server/forms';
-import type { FieldData } from '$lib/core';
+import type { FieldSpec } from '$lib/core';
 import type { RequestHandler } from './$types';
 
 export const POST: RequestHandler = async ({ params, request }) => {
@@ -10,7 +10,7 @@ export const POST: RequestHandler = async ({ params, request }) => {
 		error(400, 'Expected JSON body with a fields array');
 	}
 
-	const design = saveDesign(params.form_uuid, payload.fields as FieldData[]);
+	const design = saveDesign(params.form_uuid, payload.fields as FieldSpec[]);
 
 	return json({
 		ok: true,

@@ -1,2 +1,2 @@
-import type { BaseFieldData } from '$lib/core';
-export interface SignatureFieldData extends BaseFieldData { type: 'signature'; }
+import type { BaseFieldSpec } from '$lib/core';
+export interface SignatureFieldSpec extends BaseFieldSpec { type: 'signature'; }

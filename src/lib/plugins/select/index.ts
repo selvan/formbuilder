@@ -3,16 +3,16 @@ import Icon from './Icon.svelte';
 import Instance from './Instance.svelte';
 import Preview from './Preview.svelte';
 import Settings from './Settings.svelte';
-import type { SelectFieldData } from './types';
+import type { SelectFieldSpec } from './types';
 
-export const selectPlugin: FieldPlugin<SelectFieldData> = {
+export const selectPlugin: FieldPlugin<SelectFieldSpec> = {
 	type: 'select',
 	widgetName: 'Dropdown',
 	icon: Icon as any,
 	preview: Preview as any,
 	settings: Settings as any,
 	instance: Instance as any,
-	defaultValue: () => ({
+	defaultSpecData: () => ({
 		type: 'select',
 		label_text: 'Dropdown',
 		required: false,

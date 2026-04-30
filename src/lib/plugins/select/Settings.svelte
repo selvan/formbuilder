@@ -1,11 +1,12 @@
 <script lang="ts">
-	import type { SelectFieldData } from './types';
+	import type { SelectFieldSpec } from './types';
 	import FieldSizeSetting from '$lib/plugins/settings/FieldSizeSetting.svelte';
 	import ChoicesSetting from '$lib/plugins/settings/ChoicesSetting.svelte';
 
-	let { data, onupdate }: { data: SelectFieldData; onupdate: (data: SelectFieldData) => void } = $props();
+	let { data, onupdate }: { data: SelectFieldSpec; onupdate: (data: SelectFieldSpec) => void } =
+		$props();
 
-	function patch<K extends keyof SelectFieldData>(key: K, value: SelectFieldData[K]) {
+	function patch<K extends keyof SelectFieldSpec>(key: K, value: SelectFieldSpec[K]) {
 		onupdate({ ...data, [key]: value });
 	}
 </script>

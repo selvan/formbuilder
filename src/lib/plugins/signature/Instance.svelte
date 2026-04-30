@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { SignatureFieldData } from './types';
+	import type { SignatureFieldSpec } from './types';
 
 	type Point = { x: number; y: number };
 	type Stroke = Point[];
@@ -11,7 +11,7 @@
 		error = '',
 		onchange
 	}: {
-		data: SignatureFieldData;
+		data: SignatureFieldSpec;
 		userValue?: string | Stroke[];
 		error?: string;
 		onchange: (value: any) => void;

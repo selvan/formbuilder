@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { SelectFieldData } from './types';
+	import type { SelectFieldSpec } from './types';
 
 	let {
 		data,
@@ -7,7 +7,7 @@
 		error = '',
 		onchange
 	}: {
-		data: SelectFieldData;
+		data: SelectFieldSpec;
 		userValue?: string | number;
 		error?: string;
 		onchange: (value: any) => void;
@@ -33,7 +33,12 @@
 	{#if error}
 		<p class="error-message">{error}</p>
 	{/if}
-	<select class="field-select {data.field_size}" name="field{data.id}" {value} onchange={handleChange}>
+	<select
+		class="field-select {data.field_size}"
+		name="field{data.id}"
+		{value}
+		onchange={handleChange}
+	>
 		<option value="">--Select--</option>
 		{#each data.options as item, index}
 			<option value={index}>{item.text}</option>

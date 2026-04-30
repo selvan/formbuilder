@@ -12,7 +12,7 @@
 	import FieldTypePalette from './FieldTypePalette.svelte';
 	import FormCanvas from './FormCanvas.svelte';
 	import FieldSettings from './FieldSettings.svelte';
-	import type { FieldData } from '$lib/core';
+	import type { FieldSpec } from '$lib/core';
 	import { onMount } from 'svelte';
 
 	let {
@@ -21,7 +21,7 @@
 		saveAction
 	}: {
 		formUuid?: string;
-		initialFields?: FieldData[];
+		initialFields?: FieldSpec[];
 		saveAction?: string;
 	} = $props();
 
@@ -35,7 +35,7 @@
 		setFormFields(initialFields);
 	});
 
-	function handleFieldUpdate(data: FieldData) {
+	function handleFieldUpdate(data: FieldSpec) {
 		if (selectedFieldId) {
 			updateField(selectedFieldId, data);
 		}
@@ -74,7 +74,12 @@
 		<p class="fb-subtitle">Drag fields from the palette to build your form</p>
 		{#if saveAction}
 			<div class="fb-actions">
-				<button class="save-btn" type="button" disabled={saveStatus === 'saving'} onclick={handleSave}>
+				<button
+					class="save-btn"
+					type="button"
+					disabled={saveStatus === 'saving'}
+					onclick={handleSave}
+				>
 					{saveStatus === 'saving' ? 'Saving...' : 'Save Design'}
 				</button>
 				{#if saveMessage}
@@ -273,11 +278,7 @@
 		gap: 0.5rem;
 		padding: 0.85rem 1.1rem;
 		border-bottom: 1px solid var(--color-border);
-		background: linear-gradient(
-			135deg,
-			rgba(99, 102, 241, 0.06) 0%,
-			rgba(139, 92, 246, 0.04) 100%
-		);
+		background: linear-gradient(135deg, rgba(99, 102, 241, 0.06) 0%, rgba(139, 92, 246, 0.04) 100%);
 	}
 
 	.panel-icon {

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { SignatureFieldData } from './types';
+	import type { SignatureFieldSpec } from './types';
 
-	let { data }: { data: SignatureFieldData } = $props();
+	let { data }: { data: SignatureFieldSpec } = $props();
 </script>
 
 <div class="field-preview">

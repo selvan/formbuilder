@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { NameFieldData } from './types';
+	import type { NameFieldSpec } from './types';
 
-	let { data }: { data: NameFieldData } = $props();
+	let { data }: { data: NameFieldSpec } = $props();
 </script>
 
 <div class="field-preview">

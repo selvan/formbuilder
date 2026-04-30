@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '$lib/plugins/register';
 	import { fieldRegistry } from '$lib/core';
-	import type { DocumentInstanceData, DocumentInstanceField, FieldData } from '$lib/core';
+	import type { DocumentInstanceData, DocumentInstanceField, FieldSpec } from '$lib/core';
 
 	type ValuesByField = Record<string, any>;
 	type ErrorsByField = Record<string, string>;
@@ -32,28 +32,34 @@
 
 	let values = $state<ValuesByField>(initialValues());
 
-	function isWrappedField(field: FieldData | DocumentInstanceField): field is DocumentInstanceField {
+	function isWrappedField(
+		field: FieldSpec | DocumentInstanceField
+	): field is DocumentInstanceField {
 		return 'value' in field;
 	}
 
-	function fieldData(field: FieldData | DocumentInstanceField): FieldData {
-		const data = isWrappedField(field) && field.value ? field.value : (field as FieldData);
+	function fieldData(field: FieldSpec | DocumentInstanceField): FieldSpec {
+		const data = isWrappedField(field) && field.value ? field.value : (field as FieldSpec);
 		const id = String(isWrappedField(field) ? field.id : data.id);
 		return { ...data, id };
 	}
 
-	function fieldError(field: FieldData | DocumentInstanceField): string {
-		const id = String(isWrappedField(field) ? field.id : (field as FieldData).id);
-		return (isWrappedField(field) ? field.error : undefined) || errors[id] || errors[`field${id}`] || '';
+	function fieldError(field: FieldSpec | DocumentInstanceField): string {
+		const id = String(isWrappedField(field) ? field.id : (field as FieldSpec).id);
+		return (
+			(isWrappedField(field) ? field.error : undefined) || errors[id] || errors[`field${id}`] || ''
+		);
 	}
 
-	function fieldUserValue(field: FieldData | DocumentInstanceField): any {
-		const id = String(isWrappedField(field) ? field.id : (field as FieldData).id);
+	function fieldUserValue(field: FieldSpec | DocumentInstanceField): any {
+		const id = String(isWrappedField(field) ? field.id : (field as FieldSpec).id);
 		return values[id] ?? values[`field${id}`] ?? userValues[id] ?? userValues[`field${id}`];
 	}
 
 	function hasErrors(): boolean {
-		return document.fields.some((field) => Boolean(fieldError(field))) || Object.keys(errors).length > 0;
+		return (
+			document.fields.some((field) => Boolean(fieldError(field))) || Object.keys(errors).length > 0
+		);
 	}
 
 	function handleFieldChange(id: string, value: any) {
@@ -81,7 +87,10 @@
 	{#if hasErrors()}
 		<div class="submission-error">
 			<p>There was a problem with your submission.</p>
-			<p>The sections that have errors are highlighted below. Please correct the errors and try again.</p>
+			<p>
+				The sections that have errors are highlighted below. Please correct the errors and try
+				again.
+			</p>
 		</div>
 	{/if}
 

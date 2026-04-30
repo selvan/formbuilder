@@ -1,11 +1,12 @@
 <script lang="ts">
-	import type { WebsiteFieldData } from './types';
+	import type { WebsiteFieldSpec } from './types';
 	import PredefinedValueSetting from '$lib/plugins/settings/PredefinedValueSetting.svelte';
 	import FieldSizeSetting from '$lib/plugins/settings/FieldSizeSetting.svelte';
 
-	let { data, onupdate }: { data: WebsiteFieldData; onupdate: (data: WebsiteFieldData) => void } = $props();
+	let { data, onupdate }: { data: WebsiteFieldSpec; onupdate: (data: WebsiteFieldSpec) => void } =
+		$props();
 
-	function patch<K extends keyof WebsiteFieldData>(key: K, value: WebsiteFieldData[K]) {
+	function patch<K extends keyof WebsiteFieldSpec>(key: K, value: WebsiteFieldSpec[K]) {
 		onupdate({ ...data, [key]: value });
 	}
 </script>

@@ -1,8 +1,8 @@
-import type { FieldData } from '$lib/core';
+import type { FieldSpec } from '$lib/core';
 
 export interface StoredDesign {
 	form_uuid: string;
-	fields: FieldData[];
+	fields: FieldSpec[];
 	updated_at: string;
 }
 
@@ -27,7 +27,7 @@ export function getDesign(form_uuid: string): StoredDesign {
 	return designs.get(form_uuid) ?? createEmptyDesign(form_uuid);
 }
 
-export function saveDesign(form_uuid: string, fields: FieldData[]): StoredDesign {
+export function saveDesign(form_uuid: string, fields: FieldSpec[]): StoredDesign {
 	const design = {
 		form_uuid,
 		fields,

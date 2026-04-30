@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { NumberFieldData } from './types';
+	import type { NumberFieldSpec } from './types';
 
 	let {
 		data,
@@ -7,7 +7,7 @@
 		error = '',
 		onchange
 	}: {
-		data: NumberFieldData;
+		data: NumberFieldSpec;
 		userValue?: string;
 		error?: string;
 		onchange: (value: any) => void;

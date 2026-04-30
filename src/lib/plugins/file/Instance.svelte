@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { FileFieldData } from './types';
+	import type { FileFieldSpec } from './types';
 
 	let {
 		data,
@@ -7,7 +7,7 @@
 		error = '',
 		onchange
 	}: {
-		data: FileFieldData;
+		data: FileFieldSpec;
 		userValue?: File | { file_name?: string } | string;
 		error?: string;
 		onchange: (value: any) => void;

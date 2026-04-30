@@ -1,9 +1,9 @@
-import type { BaseFieldData, FieldPlugin } from './types';
+import type { BaseFieldSpec, FieldPlugin } from './types';
 
 export class PluginRegistry {
 	plugins: Record<string, FieldPlugin<any>> = $state({});
 
-	register<T extends BaseFieldData>(plugin: FieldPlugin<T>) {
+	register<T extends BaseFieldSpec>(plugin: FieldPlugin<T>) {
 		this.plugins[plugin.type] = plugin;
 	}
 

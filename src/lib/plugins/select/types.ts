@@ -1,2 +1,2 @@
-import type { BaseFieldData, FieldSize, Choice } from '$lib/core';
-export interface SelectFieldData extends BaseFieldData { type: 'select'; field_size: FieldSize; options: Choice[]; }
+import type { BaseFieldSpec, FieldSize, Choice } from '$lib/core';
+export interface SelectFieldSpec extends BaseFieldSpec { type: 'select'; field_size: FieldSize; options: Choice[]; }

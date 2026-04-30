@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { FileFieldData } from './types';
+	import type { FileFieldSpec } from './types';
 
-	let { data }: { data: FileFieldData } = $props();
+	let { data }: { data: FileFieldSpec } = $props();
 </script>
 
 <div class="field-preview">

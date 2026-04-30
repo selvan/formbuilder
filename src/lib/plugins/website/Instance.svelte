@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { WebsiteFieldData } from './types';
+	import type { WebsiteFieldSpec } from './types';
 
 	let {
 		data,
@@ -7,7 +7,7 @@
 		error = '',
 		onchange
 	}: {
-		data: WebsiteFieldData;
+		data: WebsiteFieldSpec;
 		userValue?: string;
 		error?: string;
 		onchange: (value: any) => void;

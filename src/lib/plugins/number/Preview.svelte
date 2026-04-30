@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { NumberFieldData } from './types';
+	import type { NumberFieldSpec } from './types';
 
-	let { data }: { data: NumberFieldData } = $props();
+	let { data }: { data: NumberFieldSpec } = $props();
 </script>
 
 <div class="field-preview">

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { TextareaFieldData } from './types';
+	import type { TextareaFieldSpec } from './types';
 
-	let { data }: { data: TextareaFieldData } = $props();
+	let { data }: { data: TextareaFieldSpec } = $props();
 </script>
 
 <div class="field-preview">

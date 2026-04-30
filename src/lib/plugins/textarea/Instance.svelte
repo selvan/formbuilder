@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { TextareaFieldData } from './types';
+	import type { TextareaFieldSpec } from './types';
 
 	let {
 		data,
@@ -7,7 +7,7 @@
 		error = '',
 		onchange
 	}: {
-		data: TextareaFieldData;
+		data: TextareaFieldSpec;
 		userValue?: string;
 		error?: string;
 		onchange: (value: any) => void;
@@ -26,10 +26,9 @@
 	{#if error}
 		<p class="error-message">{error}</p>
 	{/if}
-	<textarea
-		class="field-input {data.field_size}"
-		name="field{data.id}"
-		oninput={handleInput}>{value}</textarea>
+	<textarea class="field-input {data.field_size}" name="field{data.id}" oninput={handleInput}
+		>{value}</textarea
+	>
 </div>
 
 <style>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { EmailFieldData } from './types';
+	import type { EmailFieldSpec } from './types';
 
 	let {
 		data,
@@ -7,7 +7,7 @@
 		error = '',
 		onchange
 	}: {
-		data: EmailFieldData;
+		data: EmailFieldSpec;
 		userValue?: string;
 		error?: string;
 		onchange: (value: any) => void;

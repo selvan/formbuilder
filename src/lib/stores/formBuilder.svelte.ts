@@ -1,4 +1,4 @@
-import type { FieldData } from '$lib/core';
+import type { FieldSpec } from '$lib/core';
 import { fieldRegistry } from '$lib/core';
 
 let _idCounter = 0;
@@ -8,18 +8,18 @@ export function generateId(): string {
 
 // -- Reactive state --
 
-let formFields: FieldData[] = $state([]);
+let formFields: FieldSpec[] = $state([]);
 let selectedFieldId: string | null = $state(null);
 
 // -- Public API --
 
 /** Get the ordered list of all form fields */
-export function getFormFields(): FieldData[] {
+export function getFormFields(): FieldSpec[] {
 	return formFields;
 }
 
 /** Replace the current form fields */
-export function setFormFields(fields: FieldData[]): void {
+export function setFormFields(fields: FieldSpec[]): void {
 	formFields = fields.map((field) => ({ ...field }));
 	selectedFieldId = formFields[0]?.id ?? null;
 }
@@ -36,7 +36,7 @@ export function getSelectedFieldId(): string | null {
 }
 
 /** Get the data of the currently selected field */
-export function getSelectedField(): FieldData | null {
+export function getSelectedField(): FieldSpec | null {
 	if (!selectedFieldId) return null;
 	return formFields.find((f) => f.id === selectedFieldId) ?? null;
 }
@@ -50,8 +50,8 @@ export function selectField(id: string | null): void {
 export function addField(type: string): string | null {
 	const plugin = fieldRegistry.get(type);
 	if (!plugin) return null;
-	
-	const field = { ...plugin.defaultValue(), id: generateId() } as FieldData;
+
+	const field = { ...plugin.defaultSpecData(), id: generateId() } as FieldSpec;
 	formFields = [...formFields, field];
 	selectedFieldId = field.id;
 	return field.id;
@@ -61,8 +61,8 @@ export function addField(type: string): string | null {
 export function insertFieldAt(type: string, index: number): string | null {
 	const plugin = fieldRegistry.get(type);
 	if (!plugin) return null;
-	
-	const field = { ...plugin.defaultValue(), id: generateId() } as FieldData;
+
+	const field = { ...plugin.defaultSpecData(), id: generateId() } as FieldSpec;
 	const next = [...formFields];
 	next.splice(index, 0, field);
 	formFields = next;
@@ -97,7 +97,7 @@ export function moveField(fromIndex: number, toIndex: number): void {
 }
 
 /** Update a specific field by its ID with new data */
-export function updateField(id: string, data: FieldData): void {
+export function updateField(id: string, data: FieldSpec): void {
 	formFields = formFields.map((f) => (f.id === id ? { ...data } : f));
 }
 

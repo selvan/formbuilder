@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { FieldData } from '$lib/core';
+	import type { FieldSpec } from '$lib/core';
 	import {
 		getFormFields,
 		getSelectedFieldId,
@@ -25,7 +25,10 @@
 	function handleDragOver(e: DragEvent) {
 		if (!e.dataTransfer) return;
 		const types = e.dataTransfer.types;
-		if (types.includes('application/x-field-type') || types.includes('application/x-field-reorder')) {
+		if (
+			types.includes('application/x-field-type') ||
+			types.includes('application/x-field-reorder')
+		) {
 			e.preventDefault();
 			e.dataTransfer.dropEffect = types.includes('application/x-field-type') ? 'copy' : 'move';
 
@@ -78,7 +81,10 @@
 	function handleItemDragOver(e: DragEvent, index: number) {
 		if (!e.dataTransfer) return;
 		const types = e.dataTransfer.types;
-		if (types.includes('application/x-field-reorder') || types.includes('application/x-field-type')) {
+		if (
+			types.includes('application/x-field-reorder') ||
+			types.includes('application/x-field-type')
+		) {
 			e.preventDefault();
 			e.stopPropagation();
 
@@ -169,16 +175,18 @@
 					ondrop={(e) => handleItemDrop(e, i)}
 					ondragend={handleItemDragEnd}
 					onclick={() => handleSelectField(field.id)}
-					onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleSelectField(field.id); }}
+					onkeydown={(e) => {
+						if (e.key === 'Enter' || e.key === ' ') handleSelectField(field.id);
+					}}
 				>
 					<div class="field-drag-handle" title="Drag to reorder">
 						<svg width="10" height="16" viewBox="0 0 10 16" fill="currentColor" aria-hidden="true">
-							<circle cx="2" cy="2" r="1.5"/>
-							<circle cx="8" cy="2" r="1.5"/>
-							<circle cx="2" cy="8" r="1.5"/>
-							<circle cx="8" cy="8" r="1.5"/>
-							<circle cx="2" cy="14" r="1.5"/>
-							<circle cx="8" cy="14" r="1.5"/>
+							<circle cx="2" cy="2" r="1.5" />
+							<circle cx="8" cy="2" r="1.5" />
+							<circle cx="2" cy="8" r="1.5" />
+							<circle cx="8" cy="8" r="1.5" />
+							<circle cx="2" cy="14" r="1.5" />
+							<circle cx="8" cy="14" r="1.5" />
 						</svg>
 					</div>
 
@@ -203,9 +211,18 @@
 							title="Duplicate field"
 							onclick={(e) => handleDuplicateField(e, field.id)}
 						>
-							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-								<rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-								<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+							<svg
+								width="14"
+								height="14"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+								<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
 							</svg>
 						</button>
 						<button
@@ -213,9 +230,18 @@
 							title="Remove field"
 							onclick={(e) => handleRemoveField(e, field.id)}
 						>
-							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-								<line x1="18" y1="6" x2="6" y2="18"/>
-								<line x1="6" y1="6" x2="18" y2="18"/>
+							<svg
+								width="14"
+								height="14"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<line x1="18" y1="6" x2="6" y2="18" />
+								<line x1="6" y1="6" x2="18" y2="18" />
 							</svg>
 						</button>
 					</div>
@@ -236,12 +262,10 @@
 		border: 2px dashed var(--color-border, #334155);
 		border-radius: 1rem;
 		padding: 1rem;
-		transition: border-color 0.2s, background 0.2s;
-		background: linear-gradient(
-			180deg,
-			rgba(15, 23, 42, 0.4) 0%,
-			rgba(15, 23, 42, 0.2) 100%
-		);
+		transition:
+			border-color 0.2s,
+			background 0.2s;
+		background: linear-gradient(180deg, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0.2) 100%);
 	}
 
 	.canvas-container:global(.dragover) {
@@ -295,7 +319,14 @@
 	/* Drop indicator */
 	.drop-indicator {
 		height: 3px;
-		background: linear-gradient(90deg, transparent 0%, #818cf8 20%, #a78bfa 50%, #818cf8 80%, transparent 100%);
+		background: linear-gradient(
+			90deg,
+			transparent 0%,
+			#818cf8 20%,
+			#a78bfa 50%,
+			#818cf8 80%,
+			transparent 100%
+		);
 		border-radius: 2px;
 		margin: -0.125rem 0;
 		animation: drop-pulse 1s ease-in-out infinite;
@@ -303,8 +334,13 @@
 	}
 
 	@keyframes drop-pulse {
-		0%, 100% { opacity: 0.6; }
-		50% { opacity: 1; }
+		0%,
+		100% {
+			opacity: 0.6;
+		}
+		50% {
+			opacity: 1;
+		}
 	}
 
 	/* Field item */
@@ -353,7 +389,9 @@
 		cursor: grab;
 		color: var(--color-label, #94a3b8);
 		opacity: 0.3;
-		transition: opacity 0.2s, background 0.2s;
+		transition:
+			opacity 0.2s,
+			background 0.2s;
 		background: rgba(255, 255, 255, 0.02);
 	}
 
@@ -413,7 +451,9 @@
 		background: transparent;
 		color: var(--color-label, #94a3b8);
 		cursor: pointer;
-		transition: background 0.15s, color 0.15s;
+		transition:
+			background 0.15s,
+			color 0.15s;
 	}
 
 	.action-btn:hover {

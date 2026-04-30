@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { EmailFieldData } from './types';
+	import type { EmailFieldSpec } from './types';
 
-	let { data }: { data: EmailFieldData } = $props();
+	let { data }: { data: EmailFieldSpec } = $props();
 </script>
 
 <div class="field-preview">

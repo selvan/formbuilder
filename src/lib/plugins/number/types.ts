@@ -1,2 +1,2 @@
-import type { BaseFieldData, FieldSize } from '$lib/core';
-export interface NumberFieldData extends BaseFieldData { type: 'number'; default_text: string; field_size: FieldSize; range_min: number | null; range_max: number | null; range_type: 'value' | 'digits'; }
+import type { BaseFieldSpec, FieldSize } from '$lib/core';
+export interface NumberFieldSpec extends BaseFieldSpec { type: 'number'; default_text: string; field_size: FieldSize; range_min: number | null; range_max: number | null; range_type: 'value' | 'digits'; }

@@ -1,2 +1,2 @@
-import type { BaseFieldData, FieldLayout, Choice } from '$lib/core';
-export interface CheckboxFieldData extends BaseFieldData { type: 'checkbox'; field_layout: FieldLayout; checkboxes: Choice[]; }
+import type { BaseFieldSpec, FieldLayout, Choice } from '$lib/core';
+export interface CheckboxFieldSpec extends BaseFieldSpec { type: 'checkbox'; field_layout: FieldLayout; checkboxes: Choice[]; }

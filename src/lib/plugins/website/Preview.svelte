@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { WebsiteFieldData } from './types';
+	import type { WebsiteFieldSpec } from './types';
 
-	let { data }: { data: WebsiteFieldData } = $props();
+	let { data }: { data: WebsiteFieldSpec } = $props();
 </script>
 
 <div class="field-preview">

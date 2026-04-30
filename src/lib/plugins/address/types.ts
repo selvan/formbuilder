@@ -1,2 +1,2 @@
-import type { BaseFieldData } from '$lib/core';
-export interface AddressFieldData extends BaseFieldData { type: 'address'; country: string; }
+import type { BaseFieldSpec } from '$lib/core';
+export interface AddressFieldSpec extends BaseFieldSpec { type: 'address'; country: string; }

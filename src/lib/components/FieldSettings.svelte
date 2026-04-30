@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { FieldData } from '$lib/core';
+	import type { FieldSpec } from '$lib/core';
 	import { fieldRegistry, hasFieldPluginDesignUi } from '$lib/core';
 	import LabelSetting from './settings/LabelSetting.svelte';
 	import OptionsSetting from './settings/OptionsSetting.svelte';
@@ -8,13 +8,13 @@
 		data,
 		onupdate
 	}: {
-		data: FieldData;
-		onupdate: (data: FieldData) => void;
+		data: FieldSpec;
+		onupdate: (data: FieldSpec) => void;
 	} = $props();
 
 	// Helper to produce an updated copy with one key changed
-	function patch<K extends keyof FieldData>(key: K, value: FieldData[K]) {
-		onupdate({ ...data, [key]: value } as FieldData);
+	function patch<K extends keyof FieldSpec>(key: K, value: FieldSpec[K]) {
+		onupdate({ ...data, [key]: value } as FieldSpec);
 	}
 </script>
 
@@ -23,10 +23,7 @@
 	<LabelSetting label={data.label_text} onchange={(v) => patch('label_text', v)} />
 
 	<!-- Options (required) — all fields have required -->
-	<OptionsSetting
-		required={data.required}
-		onRequiredChange={(v) => patch('required', v)}
-	/>
+	<OptionsSetting required={data.required} onRequiredChange={(v) => patch('required', v)} />
 
 	<!-- Field specific settings via Plugin -->
 	{#if fieldRegistry.get(data.type)}

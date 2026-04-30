@@ -1,11 +1,12 @@
 <script lang="ts">
-	import type { AddressFieldData } from './types';
+	import type { AddressFieldSpec } from './types';
 	import SelectSetting from '$lib/plugins/settings/SelectSetting.svelte';
 	import { countries } from '$lib/data/countries';
 
-	let { data, onupdate }: { data: AddressFieldData; onupdate: (data: AddressFieldData) => void } = $props();
+	let { data, onupdate }: { data: AddressFieldSpec; onupdate: (data: AddressFieldSpec) => void } =
+		$props();
 
-	function patch<K extends keyof AddressFieldData>(key: K, value: AddressFieldData[K]) {
+	function patch<K extends keyof AddressFieldSpec>(key: K, value: AddressFieldSpec[K]) {
 		onupdate({ ...data, [key]: value });
 	}
 </script>

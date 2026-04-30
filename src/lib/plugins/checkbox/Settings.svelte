@@ -1,11 +1,12 @@
 <script lang="ts">
-	import type { CheckboxFieldData } from './types';
+	import type { CheckboxFieldSpec } from './types';
 	import FieldLayoutSetting from '$lib/plugins/settings/FieldLayoutSetting.svelte';
 	import ChoicesSetting from '$lib/plugins/settings/ChoicesSetting.svelte';
 
-	let { data, onupdate }: { data: CheckboxFieldData; onupdate: (data: CheckboxFieldData) => void } = $props();
+	let { data, onupdate }: { data: CheckboxFieldSpec; onupdate: (data: CheckboxFieldSpec) => void } =
+		$props();
 
-	function patch<K extends keyof CheckboxFieldData>(key: K, value: CheckboxFieldData[K]) {
+	function patch<K extends keyof CheckboxFieldSpec>(key: K, value: CheckboxFieldSpec[K]) {
 		onupdate({ ...data, [key]: value });
 	}
 </script>

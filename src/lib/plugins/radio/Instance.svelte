@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { RadioFieldData } from './types';
+	import type { RadioFieldSpec } from './types';
 
 	let {
 		data,
@@ -7,7 +7,7 @@
 		error = '',
 		onchange
 	}: {
-		data: RadioFieldData;
+		data: RadioFieldSpec;
 		userValue?: string | number;
 		error?: string;
 		onchange: (value: any) => void;
