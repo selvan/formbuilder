@@ -1,2 +1,2 @@
 import type { BaseFieldSpec, NameFormat } from '$lib/core';
-export interface NameFieldSpec extends BaseFieldSpec { type: 'name'; name_format: NameFormat; }
+export interface NameFieldSpec extends BaseFieldSpec { type: 'name'; name_format: NameFormat; first?: string; last?: string; title?: string; suffix?: string; }

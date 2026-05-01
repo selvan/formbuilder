@@ -12,6 +12,22 @@ export const filePlugin: FieldPlugin<FileFieldSpec> = {
 	preview: Preview as any,
 	settings: Settings as any,
 	instance: Instance as any,
+	validateField: (data: FileFieldSpec) => {
+		if (data.required && !data.file) {
+			data.error = 'This field is required. Please select a file.';
+			return false;
+		}
+		return true;
+	},
+	fieldInstanceValue: (data: FileFieldSpec) => {
+		if (data.file) {
+			return {
+				file_name: data.file.name,
+				type: data.file.type
+			};
+		}
+		return {};
+	},
 	defaultSpecData: () => {
 		// To be filled from old formBuilder
 		return { type: 'file', label_text: 'File Upload', required: false } as any;

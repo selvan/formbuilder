@@ -49,6 +49,7 @@ export interface FieldPluginBase<T extends BaseFieldSpec = BaseFieldSpec> {
 	widgetName: string;
 	instance: Component<{ data: T; userValue?: any; error?: string; onchange: (value: any) => void }>;
 	validateField: (data: T) => boolean;
+	fieldInstanceValue: (data: T) => any;
 	defaultSpecData: () => Omit<T, 'id'>;
 }
 

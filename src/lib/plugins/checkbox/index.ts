@@ -22,5 +22,24 @@ export const checkboxPlugin: FieldPlugin<CheckboxFieldSpec> = {
 			{ text: 'Option 2', checked: false },
 			{ text: 'Option 3', checked: false }
 		]
-	})
+	}),
+	validateField: (data: CheckboxFieldSpec) => {
+		if (data.required) {
+			const hasSelection = data.checkboxes.some((_, i) => {
+				const val = (data as any)[String(i)];
+				return val !== undefined && val !== '-1';
+			});
+			if (!hasSelection) {
+				data.error = 'This field is required. Please select a value.';
+				return false;
+			}
+		}
+		return true;
+	},
+	fieldInstanceValue: (data: CheckboxFieldSpec) => {
+		return data.checkboxes
+			.map((_, i) => (data as any)[String(i)])
+			.filter((val) => val !== undefined && val !== '-1')
+			.map((index) => data.checkboxes[Number(index)].text);
+	},
 };
