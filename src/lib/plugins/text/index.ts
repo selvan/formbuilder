@@ -12,31 +12,31 @@ export const textPlugin: FieldPlugin<TextFieldSpec> = {
 	preview: Preview as any,
 	settings: Settings as any,
 	instance: Instance as any,
-	validateField: (fieldTemplate: TextFieldSpec, fieldParam?: String) => {
-		const field = String(fieldParam || '').trim();
+	validateField: (fieldSpec: TextFieldSpec, userFieldValue?: String) => {
+		const _userFieldValue = String(userFieldValue || '').trim();
 
-		if (fieldTemplate.required && field.length === 0) {
-			fieldTemplate.error = "This field is required. Please enter a value.";
+		if (fieldSpec.required && _userFieldValue.length === 0) {
+			fieldSpec.error = "This field is required. Please enter a value.";
 			return false;
 		}
 
-		const min = fieldTemplate.range_min || 0;
-		const max = fieldTemplate.range_max || 0;
+		const min = fieldSpec.range_min || 0;
+		const max = fieldSpec.range_max || 0;
 
 		let length = 0;
-		if (fieldTemplate.range_type === 'characters') {
-			length = field.length;
+		if (fieldSpec.range_type === 'characters') {
+			length = _userFieldValue.length;
 		} else {
-			length = field.length === 0 ? 0 : field.split(/\s+/).length;
+			length = _userFieldValue.length === 0 ? 0 : _userFieldValue.split(/\s+/).length;
 		}
 
 		if (max > 0 && length > max) {
-			fieldTemplate.error = `This field can have ${max} ${fieldTemplate.range_type} atmost`;
+			fieldSpec.error = `This field can have ${max} ${fieldSpec.range_type} atmost`;
 			return false;
 		}
 
 		if (min > 0 && length < min) {
-			fieldTemplate.error = `This field must have ${min} ${fieldTemplate.range_type} atleast`;
+			fieldSpec.error = `This field must have ${min} ${fieldSpec.range_type} atleast`;
 			return false;
 		}
 		return true;
