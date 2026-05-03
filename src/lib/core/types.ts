@@ -38,12 +38,6 @@ export interface DocumentInstanceData {
 	fields: Array<FieldSpec | DocumentInstanceField>;
 }
 
-export interface FieldPluginDesignUi<T extends BaseFieldSpec = BaseFieldSpec> {
-	icon: Component;
-	preview: Component<{ data: T }>;
-	settings: Component<{ data: T; onupdate: (data: T) => void }>;
-}
-
 export interface FieldPluginBase<T extends BaseFieldSpec = BaseFieldSpec> {
 	type: string;
 	widgetName: string;
@@ -53,14 +47,16 @@ export interface FieldPluginBase<T extends BaseFieldSpec = BaseFieldSpec> {
 	defaultSpecData: () => Omit<T, 'id'>;
 }
 
-export type UiFieldPlugin<T extends BaseFieldSpec = BaseFieldSpec> = FieldPluginBase<T> &
-	FieldPluginDesignUi<T>;
+export type CliFieldPlugin<T extends BaseFieldSpec = BaseFieldSpec> = FieldPluginBase<T>;
 
-export type CliFieldPlugin<T extends BaseFieldSpec = BaseFieldSpec> = FieldPluginBase<T> & {
-	icon?: never;
-	preview?: never;
-	settings?: never;
-};
+export interface FieldPluginDesignUi<T extends BaseFieldSpec = BaseFieldSpec> {
+	icon: Component;
+	preview: Component<{ data: T }>;
+	settings: Component<{ data: T; onupdate: (data: T) => void }>;
+}
+
+export type UiFieldPlugin<T extends BaseFieldSpec = BaseFieldSpec> = CliFieldPlugin<T> &
+	FieldPluginDesignUi<T>;
 
 export type FieldPlugin<T extends BaseFieldSpec = BaseFieldSpec> =
 	| UiFieldPlugin<T>
