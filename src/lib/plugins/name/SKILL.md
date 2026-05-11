@@ -1,3 +1,24 @@
+---
+name: name-field-plugin
+description: Use when a CLI agent composes, validates, or extracts field values for the formbuilder `name` field plugin; ignore Svelte UI files and follow `index.ts`/`types.ts`.
+metadata:
+  when_to_use:
+    - "The task involves a field with `type: 'name'`."
+    - "The agent needs defaults for creating a new name field."
+    - "The agent needs to validate submitted name parts with `validateField`."
+    - "The agent needs the normalized value returned by `fieldInstanceValue`."
+  how_to_use:
+    - "Compose new fields from `defaultSpecData` and do not supply `id`."
+    - "Preserve `id` only when editing an already persisted field."
+    - "Validate required simple names by checking trimmed `first` and `last`."
+    - "Validate required extended names by checking trimmed `title`, `first`, `last`, and `suffix`."
+    - "Return the normalized object with trimmed `first`, `last`, `title`, `suffix`, and `name_format`."
+  ignore:
+    - Instance.svelte
+    - Preview.svelte
+    - Settings.svelte
+---
+
 # Name Field Plugin Skill
 
 Use this skill when a CLI agent needs to compose, validate, or extract the submitted value for the `name` field plugin.

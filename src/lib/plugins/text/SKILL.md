@@ -1,3 +1,25 @@
+---
+name: text-field-plugin
+description: Use when a CLI agent composes, validates, or extracts field values for the formbuilder `text` field plugin; ignore Svelte UI files and follow `index.ts`/`types.ts`.
+metadata:
+  when_to_use:
+    - "The task involves a field with `type: 'text'`."
+    - "The agent needs defaults for creating a new single-line text field."
+    - "The agent needs to validate required text or min/max length with `validateField`."
+    - "The agent needs the trimmed string returned by `fieldInstanceValue`."
+  how_to_use:
+    - "Compose new fields from `defaultSpecData` and do not supply `id`."
+    - "Preserve `id` only when editing an already persisted field."
+    - "Validate submitted text from trimmed `value`, not from `default_text`."
+    - "Skip length validation when the value is empty and the field is optional."
+    - "Count either characters or words based on `range_type`, applying `range_max` before `range_min`."
+    - "Return the submitted `value` as a trimmed string."
+  ignore:
+    - Instance.svelte
+    - Preview.svelte
+    - Settings.svelte
+---
+
 # Text Field Plugin Skill
 
 Use this skill when a CLI agent needs to compose, validate, or extract the submitted value for the `text` field plugin.
