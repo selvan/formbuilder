@@ -38,6 +38,6 @@ export const namePlugin: FieldPlugin<NameFieldSpec> = {
 	},
 	defaultSpecData: () => {
 		// To be filled from old formBuilder
-		return { type: 'name', label_text: 'Name', required: false, name_format: 'normal' } as any;
+		return { type: 'name', label_text: 'Name', required: false, name_format: 'simple' } as any;
 	}
 };

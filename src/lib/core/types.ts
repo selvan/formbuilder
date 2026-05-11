@@ -9,7 +9,7 @@ export type FieldSize = 'small' | 'medium' | 'large';
 
 export type FieldLayout = 'one_column' | 'two_columns' | 'three_columns' | 'side_by_side';
 
-export type NameFormat = 'normal' | 'extended';
+export type NameFormat = 'simple' | 'extended';
 
 export type DateFormat = 'mm/dd/yyyy' | 'dd/mm/yyyy';
 

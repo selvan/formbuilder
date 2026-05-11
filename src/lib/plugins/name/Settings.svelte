@@ -15,7 +15,7 @@
 	label="Name Format"
 	value={data.name_format}
 	options={[
-		{ val: 'normal' as NameFormat, text: 'Normal' },
+		{ val: 'simple' as NameFormat, text: 'Simple' },
 		{ val: 'extended' as NameFormat, text: 'Extended' }
 	]}
 	onchange={(v) => patch('name_format', v as NameFormat)}
