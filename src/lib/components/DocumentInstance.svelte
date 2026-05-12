@@ -123,6 +123,8 @@
 								{error}
 								onchange={(value) => handleFieldChange(data.id, value)}
 							/>
+						{:else}
+							<p class="unknown-field">No input UI for field type: {data.type}</p>
 						{/if}
 					{:else}
 						<p class="unknown-field">Unknown field type: {data.type}</p>
