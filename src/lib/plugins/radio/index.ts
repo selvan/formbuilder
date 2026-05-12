@@ -1,11 +1,11 @@
-import type { FieldPlugin } from '$lib/core';
+import type { FieldSpecPlugin } from '$lib/core';
 import Icon from './Icon.svelte';
 import Instance from './Instance.svelte';
 import Preview from './Preview.svelte';
 import Settings from './Settings.svelte';
 import type { RadioFieldSpec } from './types';
 
-export const radioPlugin: FieldPlugin<RadioFieldSpec> = {
+export const radioPlugin: FieldSpecPlugin<RadioFieldSpec> = {
 	type: 'radio',
 	widgetName: 'Multiple Choice',
 	icon: Icon as any,

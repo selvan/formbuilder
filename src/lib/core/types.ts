@@ -44,7 +44,7 @@ export interface DocumentInstanceData {
 	fields: Array<FieldSpec | DocumentInstanceField>;
 }
 
-export interface FieldPluginBase<T extends BaseFieldSpec = BaseFieldSpec> {
+export interface FieldSpecPluginBase<T extends BaseFieldSpec = BaseFieldSpec> {
 	type: string;
 	widgetName: string;
 	instance: Component<{ data: T; userValue?: any; error?: string; onchange: (value: any) => void }>;
@@ -53,23 +53,23 @@ export interface FieldPluginBase<T extends BaseFieldSpec = BaseFieldSpec> {
 	defaultSpecData: () => Omit<T, 'id'>;
 }
 
-export type CliFieldPlugin<T extends BaseFieldSpec = BaseFieldSpec> = FieldPluginBase<T>;
+export type CliFieldSpecPlugin<T extends BaseFieldSpec = BaseFieldSpec> = FieldSpecPluginBase<T>;
 
-export interface FieldPluginDesignUi<T extends BaseFieldSpec = BaseFieldSpec> {
+export interface FieldSpecPluginDesignUI<T extends BaseFieldSpec = BaseFieldSpec> {
 	icon: Component;
 	preview: Component<{ data: T }>;
 	settings: Component<{ data: T; onupdate: (data: T) => void }>;
 }
 
-export type UiFieldPlugin<T extends BaseFieldSpec = BaseFieldSpec> = CliFieldPlugin<T> &
-	FieldPluginDesignUi<T>;
+export type UIFieldSpecPlugin<T extends BaseFieldSpec = BaseFieldSpec> = CliFieldSpecPlugin<T> &
+	FieldSpecPluginDesignUI<T>;
 
-export type FieldPlugin<T extends BaseFieldSpec = BaseFieldSpec> =
-	| UiFieldPlugin<T>
-	| CliFieldPlugin<T>;
+export type FieldSpecPlugin<T extends BaseFieldSpec = BaseFieldSpec> =
+	| UIFieldSpecPlugin<T>
+	| CliFieldSpecPlugin<T>;
 
 export function hasFieldPluginDesignUi<T extends BaseFieldSpec>(
-	plugin: FieldPlugin<T>
-): plugin is UiFieldPlugin<T> {
+	plugin: FieldSpecPlugin<T>
+): plugin is UIFieldSpecPlugin<T> {
 	return 'icon' in plugin && 'preview' in plugin && 'settings' in plugin;
 }

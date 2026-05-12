@@ -1,23 +1,23 @@
-import type { BaseFieldSpec, FieldPlugin } from './types';
+import type { BaseFieldSpec, FieldSpecPlugin } from './types';
 
 export class PluginRegistry {
-	plugins: Record<string, FieldPlugin<any>> = $state({});
+	plugins: Record<string, FieldSpecPlugin<any>> = $state({});
 
-	register<T extends BaseFieldSpec>(plugin: FieldPlugin<T>) {
+	register<T extends BaseFieldSpec>(plugin: FieldSpecPlugin<T>) {
 		this.plugins[plugin.type] = plugin;
 	}
 
-	registerAll(plugins: FieldPlugin<any>[]) {
+	registerAll(plugins: FieldSpecPlugin<any>[]) {
 		for (const plugin of plugins) {
 			this.register(plugin);
 		}
 	}
 
-	get(type: string): FieldPlugin<any> | undefined {
+	get(type: string): FieldSpecPlugin<any> | undefined {
 		return this.plugins[type];
 	}
 
-	getAll(): FieldPlugin<any>[] {
+	getAll(): FieldSpecPlugin<any>[] {
 		return Object.values(this.plugins);
 	}
 }

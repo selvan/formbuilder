@@ -1,11 +1,11 @@
-import type { FieldPlugin } from '$lib/core';
+import type { FieldSpecPlugin } from '$lib/core';
 import Icon from './Icon.svelte';
 import Instance from './Instance.svelte';
 import Preview from './Preview.svelte';
 import Settings from './Settings.svelte';
 import type { WebsiteFieldSpec } from './types';
 
-export const websitePlugin: FieldPlugin<WebsiteFieldSpec> = {
+export const websitePlugin: FieldSpecPlugin<WebsiteFieldSpec> = {
 	type: 'website',
 	widgetName: 'Website',
 	icon: Icon as any,

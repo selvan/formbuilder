@@ -1,4 +1,4 @@
-import type { FieldPlugin } from '$lib/core';
+import type { FieldSpecPlugin } from '$lib/core';
 export { customPlugins } from './custom.generated';
 
 import { addressPlugin } from './address';
@@ -34,7 +34,7 @@ export { timePlugin } from './time';
 export { websitePlugin } from './website';
 export * from './settings';
 
-export const defaultPlugins: FieldPlugin<any>[] = [
+export const defaultPlugins: FieldSpecPlugin<any>[] = [
 	textPlugin,
 	numberPlugin,
 	textareaPlugin,

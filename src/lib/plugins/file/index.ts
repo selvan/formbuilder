@@ -1,11 +1,11 @@
-import type { FieldPlugin } from '$lib/core';
+import type { FieldSpecPlugin } from '$lib/core';
 import Icon from './Icon.svelte';
 import Instance from './Instance.svelte';
 import Preview from './Preview.svelte';
 import Settings from './Settings.svelte';
 import type { FileFieldSpec } from './types';
 
-export const filePlugin: FieldPlugin<FileFieldSpec> = {
+export const filePlugin: FieldSpecPlugin<FileFieldSpec> = {
 	type: 'file',
 	widgetName: 'File Upload',
 	icon: Icon as any,

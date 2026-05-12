@@ -1,11 +1,11 @@
-import type { FieldPlugin } from '$lib/core';
+import type { FieldSpecPlugin } from '$lib/core';
 import Icon from './Icon.svelte';
 import Instance from './Instance.svelte';
 import Preview from './Preview.svelte';
 import Settings from './Settings.svelte';
 import type { TextFieldSpec } from './types';
 
-export const textPlugin: FieldPlugin<TextFieldSpec> = {
+export const textPlugin: FieldSpecPlugin<TextFieldSpec> = {
 	type: 'text',
 	widgetName: 'Single Line Text',
 	icon: Icon as any,

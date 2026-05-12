@@ -1,11 +1,11 @@
-import type { FieldPlugin } from '$lib/core';
+import type { FieldSpecPlugin } from '$lib/core';
 import Icon from './Icon.svelte';
 import Instance from './Instance.svelte';
 import Preview from './Preview.svelte';
 import Settings from './Settings.svelte';
 import type { EmailFieldSpec } from './types';
 
-export const emailPlugin: FieldPlugin<EmailFieldSpec> = {
+export const emailPlugin: FieldSpecPlugin<EmailFieldSpec> = {
 	type: 'email',
 	widgetName: 'Email',
 	icon: Icon as any,

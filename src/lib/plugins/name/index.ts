@@ -1,11 +1,11 @@
-import type { FieldPlugin } from '$lib/core';
+import type { FieldSpecPlugin } from '$lib/core';
 import Icon from './Icon.svelte';
 import Instance from './Instance.svelte';
 import Preview from './Preview.svelte';
 import Settings from './Settings.svelte';
 import type { NameFieldSpec } from './types';
 
-export const namePlugin: FieldPlugin<NameFieldSpec> = {
+export const namePlugin: FieldSpecPlugin<NameFieldSpec> = {
 	type: 'name',
 	widgetName: 'Name',
 	icon: Icon as any,

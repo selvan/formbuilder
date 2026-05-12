@@ -1,11 +1,11 @@
-import type { FieldPlugin } from '$lib/core';
+import type { FieldSpecPlugin } from '$lib/core';
 import Icon from './Icon.svelte';
 import Instance from './Instance.svelte';
 import Preview from './Preview.svelte';
 import Settings from './Settings.svelte';
 import type { PhoneFieldSpec } from './types';
 
-export const phonePlugin: FieldPlugin<PhoneFieldSpec> = {
+export const phonePlugin: FieldSpecPlugin<PhoneFieldSpec> = {
 	type: 'phone',
 	widgetName: 'Phone',
 	icon: Icon as any,
