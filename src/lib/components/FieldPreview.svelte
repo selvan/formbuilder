@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { FieldSpec } from '$lib/core';
-	import { fieldRegistry, hasFieldPluginDesignUI } from '$lib/core';
+	import { fieldRegistry, isFieldSpecPluginForDesignUI } from '$lib/core';
 
 	let { data }: { data: FieldSpec } = $props();
 </script>
@@ -8,7 +8,7 @@
 <div class="preview-container">
 	{#if fieldRegistry.get(data.type)}
 		{@const plugin = fieldRegistry.get(data.type)}
-		{#if plugin && hasFieldPluginDesignUI(plugin)}
+		{#if plugin && isFieldSpecPluginForDesignUI(plugin)}
 			<svelte:component this={plugin.preview} {data} />
 		{:else}
 			<div class="error">No preview available for field type: {data.type}</div>

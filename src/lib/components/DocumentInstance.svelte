@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '$lib/plugins/register';
 	import { fieldRegistry } from '$lib/core';
-	import type { DocumentInstanceData, DocumentInstanceField, FieldSpec } from '$lib/core';
+	import { type DocumentInstanceData, type DocumentInstanceField, type FieldSpec, isFieldSpecPluginForCaptureUI } from '$lib/core';
 
 	type ValuesByField = Record<string, any>;
 	type ErrorsByField = Record<string, string>;
@@ -114,14 +114,16 @@
 						<p class="error-box">{error}</p>
 					{/if}
 
-					{#if plugin?.inputField}
-						{@const Instance = plugin.inputField}
-						<Instance
-							{data}
-							userValue={fieldUserValue(field)}
-							{error}
-							onchange={(value) => handleFieldChange(data.id, value)}
-						/>
+					{#if plugin}
+						{#if isFieldSpecPluginForCaptureUI(plugin)}
+							{@const Instance = plugin.inputField}
+							<Instance
+								{data}
+								userValue={fieldUserValue(field)}
+								{error}
+								onchange={(value) => handleFieldChange(data.id, value)}
+							/>
+						{/if}
 					{:else}
 						<p class="unknown-field">Unknown field type: {data.type}</p>
 					{/if}

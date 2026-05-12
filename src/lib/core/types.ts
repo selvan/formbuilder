@@ -75,13 +75,13 @@ export type FieldSpecPlugin<T extends BaseFieldSpec = BaseFieldSpec> =
 	| UIFieldSpecDesignPlugin<T>
 	| UIFieldCapturePlugin<T>;
 
-export function hasFieldPluginDesignUI<T extends BaseFieldSpec>(
+export function isFieldSpecPluginForDesignUI<T extends BaseFieldSpec>(
 	plugin: FieldSpecPlugin<T>
 ): plugin is UIFieldSpecDesignPlugin<T> {
 	return 'icon' in plugin && 'preview' in plugin && 'settings' in plugin;
 }
 
-export function hasFieldPluginCaptureUI<T extends BaseFieldSpec>(
+export function isFieldSpecPluginForCaptureUI<T extends BaseFieldSpec>(
 	plugin: FieldSpecPlugin<T>
 ): plugin is UIFieldCapturePlugin<T> {
 	return 'inputField' in plugin;

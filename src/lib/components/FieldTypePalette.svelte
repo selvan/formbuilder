@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { fieldRegistry, hasFieldPluginDesignUI } from '$lib/core';
+	import { fieldRegistry, isFieldSpecPluginForDesignUI } from '$lib/core';
 
 	let {
 		ondragstart,
@@ -16,7 +16,7 @@
 		ondragstart?.(type);
 	}
 	
-	let plugins = $derived(fieldRegistry.getAll().filter(hasFieldPluginDesignUI));
+	let plugins = $derived(fieldRegistry.getAll().filter(isFieldSpecPluginForDesignUI));
 </script>
 
 <div class="palette-grid">
