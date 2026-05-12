@@ -15,6 +15,12 @@ export type DateFormat = 'mm/dd/yyyy' | 'dd/mm/yyyy';
 
 export type PhoneFormat = 'international' | 'other';
 
+export enum ShareOption {
+	None = 'none',
+	Url = 'url',
+	Email = 'email'
+}
+
 export interface BaseFieldSpec {
 	id: string;
 	type: string;
@@ -34,7 +40,7 @@ export interface DocumentInstanceField {
 
 export interface DocumentInstanceData {
 	address?: string;
-	share_option?: string;
+	share_options?: ShareOption;
 	fields: Array<FieldSpec | DocumentInstanceField>;
 }
 
