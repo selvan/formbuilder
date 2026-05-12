@@ -32,16 +32,16 @@ export interface BaseFieldSpec {
 
 export type FieldSpec = BaseFieldSpec;
 
-export interface DocumentInstanceField {
+export interface DocumentInputField {
 	id: string | number;
 	value?: FieldSpec;
 	error?: string;
 }
 
-export interface DocumentInstanceData {
+export interface DocumentInput {
 	address?: string;
 	share_options?: ShareOption;
-	fields: Array<FieldSpec | DocumentInstanceField>;
+	fields: Array<FieldSpec | DocumentInputField>;
 }
 
 export interface FieldSpecPluginBase<T extends BaseFieldSpec = BaseFieldSpec> {

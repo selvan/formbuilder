@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '$lib/plugins/register';
 	import { fieldRegistry } from '$lib/core';
-	import { type DocumentInstanceData, type DocumentInstanceField, type FieldSpec, isFieldSpecPluginForCaptureUI } from '$lib/core';
+	import { type DocumentInput, type DocumentInputField, type FieldSpec, isFieldSpecPluginForCaptureUI } from '$lib/core';
 
 	type ValuesByField = Record<string, any>;
 	type ErrorsByField = Record<string, string>;
@@ -16,7 +16,7 @@
 		notice = '',
 		onsubmit
 	}: {
-		document: DocumentInstanceData;
+		document: DocumentInput;
 		userValues?: ValuesByField;
 		errors?: ErrorsByField;
 		action?: string;
@@ -33,25 +33,25 @@
 	let values = $state<ValuesByField>(initialValues());
 
 	function isWrappedField(
-		field: FieldSpec | DocumentInstanceField
-	): field is DocumentInstanceField {
+		field: FieldSpec | DocumentInputField
+	): field is DocumentInputField {
 		return 'value' in field;
 	}
 
-	function fieldData(field: FieldSpec | DocumentInstanceField): FieldSpec {
+	function fieldData(field: FieldSpec | DocumentInputField): FieldSpec {
 		const data = isWrappedField(field) && field.value ? field.value : (field as FieldSpec);
 		const id = String(isWrappedField(field) ? field.id : data.id);
 		return { ...data, id };
 	}
 
-	function fieldError(field: FieldSpec | DocumentInstanceField): string {
+	function fieldError(field: FieldSpec | DocumentInputField): string {
 		const id = String(isWrappedField(field) ? field.id : (field as FieldSpec).id);
 		return (
 			(isWrappedField(field) ? field.error : undefined) || errors[id] || errors[`field${id}`] || ''
 		);
 	}
 
-	function fieldUserValue(field: FieldSpec | DocumentInstanceField): any {
+	function fieldUserValue(field: FieldSpec | DocumentInputField): any {
 		const id = String(isWrappedField(field) ? field.id : (field as FieldSpec).id);
 		return values[id] ?? values[`field${id}`] ?? userValues[id] ?? userValues[`field${id}`];
 	}
