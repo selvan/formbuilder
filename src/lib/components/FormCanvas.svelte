@@ -10,7 +10,7 @@
 		moveField,
 		duplicateField
 	} from '$lib/stores/formBuilder.svelte';
-	import { fieldRegistry, hasFieldPluginDesignUi } from '$lib/core';
+	import { fieldRegistry, hasFieldPluginDesignUI } from '$lib/core';
 	import FieldPreview from './FieldPreview.svelte';
 
 	let fields = $derived(getFormFields());
@@ -194,7 +194,7 @@
 						<span class="badge-icon">
 							{#if fieldRegistry.get(field.type)}
 								{@const plugin = fieldRegistry.get(field.type)}
-								{#if plugin && hasFieldPluginDesignUi(plugin)}
+								{#if plugin && hasFieldPluginDesignUI(plugin)}
 									<svelte:component this={plugin.icon} />
 								{/if}
 							{/if}

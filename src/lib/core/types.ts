@@ -68,7 +68,7 @@ export type FieldSpecPlugin<T extends BaseFieldSpec = BaseFieldSpec> =
 	| UIFieldSpecPlugin<T>
 	| CliFieldSpecPlugin<T>;
 
-export function hasFieldPluginDesignUi<T extends BaseFieldSpec>(
+export function hasFieldPluginDesignUI<T extends BaseFieldSpec>(
 	plugin: FieldSpecPlugin<T>
 ): plugin is UIFieldSpecPlugin<T> {
 	return 'icon' in plugin && 'preview' in plugin && 'settings' in plugin;

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { FieldSpec } from '$lib/core';
-	import { fieldRegistry, hasFieldPluginDesignUi } from '$lib/core';
+	import { fieldRegistry, hasFieldPluginDesignUI } from '$lib/core';
 	import LabelSetting from './settings/LabelSetting.svelte';
 	import OptionsSetting from './settings/OptionsSetting.svelte';
 
@@ -28,7 +28,7 @@
 	<!-- Field specific settings via Plugin -->
 	{#if fieldRegistry.get(data.type)}
 		{@const plugin = fieldRegistry.get(data.type)}
-		{#if plugin && hasFieldPluginDesignUi(plugin)}
+		{#if plugin && hasFieldPluginDesignUI(plugin)}
 			<svelte:component this={plugin.settings} {data} {onupdate} />
 		{:else}
 			<div class="error">No design settings available for type: {data.type}</div>
