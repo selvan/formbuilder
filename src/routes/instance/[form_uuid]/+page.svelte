@@ -1,5 +1,5 @@
 <script lang="ts">
-	import DocumentInstance from '$lib/components/DocumentInstance.svelte';
+	import DocumentInput from '$lib/components/DocumentInput.svelte';
 
 	let { data } = $props();
 	let submitStatus = $state<'idle' | 'submitting' | 'submitted' | 'error'>('idle');
@@ -69,7 +69,7 @@
 	{#if submitMessage}
 		<p class="submit-message" class:error={submitStatus === 'error'}>{submitMessage}</p>
 	{/if}
-	<DocumentInstance document={data.document} onsubmit={handleSubmit} disabled={submitStatus === 'submitting'} />
+	<DocumentInput document={data.document} onsubmit={handleSubmit} disabled={submitStatus === 'submitting'} />
 </main>
 
 <style>

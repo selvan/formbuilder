@@ -32,7 +32,7 @@ Use these imports inside the app:
 import type { FieldSpec, FieldSpecPlugin } from '$lib/core';
 import { fieldRegistry } from '$lib/core';
 import { defaultPlugins } from '$lib/plugins';
-import { FormBuilder, DocumentInstance } from '$lib';
+import { FormBuilder, DocumentInput } from '$lib';
 ```
 
 The older `$lib/types` and `$lib/stores/registry.svelte` modules remain as compatibility shims.

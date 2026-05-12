@@ -32,16 +32,25 @@ export interface BaseFieldSpec {
 
 export type FieldSpec = BaseFieldSpec;
 
+export type JSONValue =
+	| string
+	| number
+	| boolean
+	| null
+	| JSONValue[]
+	| { [key: string]: JSONValue };
+
 export interface DocumentInputField {
 	id: string | number;
-	value?: FieldSpec;
+	fieldSpec: FieldSpec;
+	fieldValue?: JSONValue;
 	error?: string;
 }
 
 export interface DocumentInput {
 	address?: string;
 	share_options?: ShareOption;
-	fields: Array<FieldSpec | DocumentInputField>;
+	fields: DocumentInputField[];
 }
 
 export interface FieldSpecPluginBase<T extends BaseFieldSpec = BaseFieldSpec> {
