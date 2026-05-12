@@ -11,7 +11,7 @@ export const addressPlugin: FieldSpecPlugin<AddressFieldSpec> = {
 	icon: Icon as any,
 	preview: Preview as any,
 	settings: Settings as any,
-	instance: Instance as any,
+	inputField: Instance as any,
 	defaultSpecData: () => {
 		// To be filled from old formBuilder
 		return { type: 'address', label_text: 'Address', required: false } as any;

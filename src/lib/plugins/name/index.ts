@@ -11,7 +11,7 @@ export const namePlugin: FieldSpecPlugin<NameFieldSpec> = {
 	icon: Icon as any,
 	preview: Preview as any,
 	settings: Settings as any,
-	instance: Instance as any,
+	inputField: Instance as any,
 	validateField: (data: NameFieldSpec) => {
 		if (data.required) {
 			if (!data.first?.trim() || !data.last?.trim()) {

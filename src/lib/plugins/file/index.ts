@@ -11,7 +11,7 @@ export const filePlugin: FieldSpecPlugin<FileFieldSpec> = {
 	icon: Icon as any,
 	preview: Preview as any,
 	settings: Settings as any,
-	instance: Instance as any,
+	inputField: Instance as any,
 	validateField: (data: FileFieldSpec) => {
 		if (data.required && !data.file) {
 			data.error = 'This field is required. Please select a file.';

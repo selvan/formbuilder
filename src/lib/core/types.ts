@@ -47,7 +47,6 @@ export interface DocumentInstanceData {
 export interface FieldSpecPluginBase<T extends BaseFieldSpec = BaseFieldSpec> {
 	type: string;
 	widgetName: string;
-	instance: Component<{ data: T; userValue?: any; error?: string; onchange: (value: any) => void }>;
 	validateField: (data: T) => boolean;
 	fieldInstanceValue: (data: T) => any;
 	defaultSpecData: () => Omit<T, 'id'>;
@@ -55,21 +54,35 @@ export interface FieldSpecPluginBase<T extends BaseFieldSpec = BaseFieldSpec> {
 
 export type CliFieldSpecPlugin<T extends BaseFieldSpec = BaseFieldSpec> = FieldSpecPluginBase<T>;
 
-export interface FieldSpecPluginDesignUI<T extends BaseFieldSpec = BaseFieldSpec> {
+export interface FieldSpecDesignPluginUIComponent<T extends BaseFieldSpec = BaseFieldSpec> {
 	icon: Component;
 	preview: Component<{ data: T }>;
 	settings: Component<{ data: T; onupdate: (data: T) => void }>;
 }
 
-export type UIFieldSpecPlugin<T extends BaseFieldSpec = BaseFieldSpec> = CliFieldSpecPlugin<T> &
-	FieldSpecPluginDesignUI<T>;
+export type UIFieldSpecDesignPlugin<T extends BaseFieldSpec = BaseFieldSpec> = CliFieldSpecPlugin<T> &
+	FieldSpecDesignPluginUIComponent<T>;
+
+export interface FieldCapturePluginUIComponent<T extends BaseFieldSpec = BaseFieldSpec> {
+	inputField: Component<{ data: T; userValue?: any; error?: string; onchange: (value: any) => void }>;
+}
+
+export type UIFieldCapturePlugin<T extends BaseFieldSpec = BaseFieldSpec> = CliFieldSpecPlugin<T> &
+	FieldCapturePluginUIComponent<T>;
 
 export type FieldSpecPlugin<T extends BaseFieldSpec = BaseFieldSpec> =
-	| UIFieldSpecPlugin<T>
-	| CliFieldSpecPlugin<T>;
+	| CliFieldSpecPlugin<T>
+	| UIFieldSpecDesignPlugin<T>
+	| UIFieldCapturePlugin<T>;
 
 export function hasFieldPluginDesignUI<T extends BaseFieldSpec>(
 	plugin: FieldSpecPlugin<T>
-): plugin is UIFieldSpecPlugin<T> {
+): plugin is UIFieldSpecDesignPlugin<T> {
 	return 'icon' in plugin && 'preview' in plugin && 'settings' in plugin;
+}
+
+export function hasFieldPluginCaptureUI<T extends BaseFieldSpec>(
+	plugin: FieldSpecPlugin<T>
+): plugin is UIFieldCapturePlugin<T> {
+	return 'inputField' in plugin;
 }

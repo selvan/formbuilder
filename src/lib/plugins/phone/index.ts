@@ -11,7 +11,7 @@ export const phonePlugin: FieldSpecPlugin<PhoneFieldSpec> = {
 	icon: Icon as any,
 	preview: Preview as any,
 	settings: Settings as any,
-	instance: Instance as any,
+	inputField: Instance as any,
 	validateField: (data: PhoneFieldSpec) => {
 		if (data.phone_format === 'international') {
 			if (data.required && !data.international?.trim()) {

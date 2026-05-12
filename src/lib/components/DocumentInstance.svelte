@@ -114,8 +114,8 @@
 						<p class="error-box">{error}</p>
 					{/if}
 
-					{#if plugin?.instance}
-						{@const Instance = plugin.instance}
+					{#if plugin?.inputField}
+						{@const Instance = plugin.inputField}
 						<Instance
 							{data}
 							userValue={fieldUserValue(field)}

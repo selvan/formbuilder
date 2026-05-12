@@ -11,7 +11,7 @@ export const timePlugin: FieldSpecPlugin<TimeFieldSpec> = {
 	icon: Icon as any,
 	preview: Preview as any,
 	settings: Settings as any,
-	instance: Instance as any,
+	inputField: Instance as any,
 	validateField: (data: TimeFieldSpec) => {
 		const h = (data.h || '').trim();
 		const m = (data.m || '').trim();

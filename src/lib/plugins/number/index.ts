@@ -11,7 +11,7 @@ export const numberPlugin: FieldSpecPlugin<NumberFieldSpec> = {
 	icon: Icon as any,
 	preview: Preview as any,
 	settings: Settings as any,
-	instance: Instance as any,
+	inputField: Instance as any,
 	validateField: (data: NumberFieldSpec) => {
 		const val = (data.value || '').trim();
 

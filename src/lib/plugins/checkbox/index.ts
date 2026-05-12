@@ -11,7 +11,7 @@ export const checkboxPlugin: FieldSpecPlugin<CheckboxFieldSpec> = {
 	icon: Icon as any,
 	preview: Preview as any,
 	settings: Settings as any,
-	instance: Instance as any,
+	inputField: Instance as any,
 	defaultSpecData: () => ({
 		type: 'checkbox',
 		label_text: 'Checkboxes',

@@ -11,7 +11,7 @@ export const datePlugin: FieldSpecPlugin<DateFieldSpec> = {
 	icon: Icon as any,
 	preview: Preview as any,
 	settings: Settings as any,
-	instance: Instance as any,
+	inputField: Instance as any,
 	defaultSpecData: () => {
 		// To be filled from old formBuilder
 		return { type: 'date', label_text: 'Date', required: false, date_format: 'mm/dd/yyyy' } as any;

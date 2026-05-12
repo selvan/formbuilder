@@ -11,7 +11,7 @@ export const textPlugin: FieldSpecPlugin<TextFieldSpec> = {
 	icon: Icon as any,
 	preview: Preview as any,
 	settings: Settings as any,
-	instance: Instance as any,
+	inputField: Instance as any,
 	validateField: (data: TextFieldSpec) => {
 		const val = (data.value || '').trim();
 		if (data.required && val === '') {

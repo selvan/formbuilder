@@ -11,7 +11,7 @@ export const selectPlugin: FieldSpecPlugin<SelectFieldSpec> = {
 	icon: Icon as any,
 	preview: Preview as any,
 	settings: Settings as any,
-	instance: Instance as any,
+	inputField: Instance as any,
 	validateField: (data: SelectFieldSpec) => {
 		const val = data.value?.toString().trim() || '';
 		if (data.required && val === '') {
