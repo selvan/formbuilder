@@ -119,8 +119,8 @@
 
 					{#if plugin}
 						{#if isFieldSpecPluginForCaptureUI(plugin)}
-							{@const Instance = plugin.inputField}
-							<Instance
+							{@const Input = plugin.inputField}
+							<Input
 								{data}
 								userValue={fieldUserValue(field)}
 								{error}
