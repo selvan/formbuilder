@@ -1,6 +1,6 @@
 import type { FieldSpecPlugin } from '$lib/core';
 import Icon from './Icon.svelte';
-import Instance from './Instance.svelte';
+import Input from './Input.svelte';
 import Preview from './Preview.svelte';
 import Settings from './Settings.svelte';
 import type { DateFieldSpec } from './types';
@@ -11,7 +11,7 @@ export const datePlugin: FieldSpecPlugin<DateFieldSpec> = {
 	icon: Icon as any,
 	preview: Preview as any,
 	settings: Settings as any,
-	inputField: Instance as any,
+	inputField: Input as any,
 	defaultSpecData: () => {
 		// To be filled from old formBuilder
 		return { type: 'date', label_text: 'Date', required: false, date_format: 'mm/dd/yyyy' } as any;

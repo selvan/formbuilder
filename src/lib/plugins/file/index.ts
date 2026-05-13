@@ -1,6 +1,6 @@
 import type { FieldSpecPlugin } from '$lib/core';
 import Icon from './Icon.svelte';
-import Instance from './Instance.svelte';
+import Input from './Input.svelte';
 import Preview from './Preview.svelte';
 import Settings from './Settings.svelte';
 import type { FileFieldSpec } from './types';
@@ -11,7 +11,7 @@ export const filePlugin: FieldSpecPlugin<FileFieldSpec> = {
 	icon: Icon as any,
 	preview: Preview as any,
 	settings: Settings as any,
-	inputField: Instance as any,
+	inputField: Input as any,
 	validateField: (data: FileFieldSpec) => {
 		if (data.required && !data.file) {
 			data.error = 'This field is required. Please select a file.';
